@@ -13,16 +13,16 @@ const {
 } = Astro.props;
 ---
 
-<section class="border-t border-white/10 px-6 py-24">
+<section class="border-t border-white/10 px-6 py-24 md:px-8 md:py-32">
   <div class="mx-auto max-w-content">
-    <div class="border border-white/10 p-12 md:p-20">
-      <p class="mb-6 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
+    <div class="border border-white/10 p-10 md:p-20">
+      <p class="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
         {eyebrow}
       </p>
       <h2 class="font-display mb-6 max-w-2xl text-4xl font-semibold leading-tight md:text-5xl">
         {title}
       </h2>
-      <p class="mb-10 max-w-lg text-lg text-white/55">{text}</p>
+      <p class="mb-12 max-w-lg text-lg leading-relaxed text-white/55">{text}</p>
       <a
         href="/kontakt"
         class="inline-block bg-brand-green px-10 py-4 text-sm font-semibold text-black transition-opacity hover:opacity-90"

@@ -38,17 +38,17 @@ const outcomes = [
 
 <Layout title="Consistent Media">
   <!-- 1. Hero -->
-  <section class="border-b border-white/10 px-6 py-28 md:py-36">
+  <section class="border-b border-white/10 px-6 pb-32 pt-24 md:px-8 md:pb-44 md:pt-32">
     <div class="mx-auto max-w-content">
       <h1 class="font-display max-w-4xl text-5xl font-semibold leading-[1.05] tracking-tight md:text-7xl lg:text-8xl">
         Expertise <span class="text-brand-green">sichtbar</span> machen.
       </h1>
-      <p class="mt-8 max-w-xl text-lg leading-relaxed text-white/70 md:text-xl">
+      <p class="mt-10 max-w-xl text-lg leading-relaxed text-white/70 md:text-xl">
         Du bist in deinem Fach längst führend. Online merkt das nur kaum jemand.
         Wir sorgen dafür, dass die richtigen Menschen dich finden, dir vertrauen
         und anfragen.
       </p>
-      <div class="mt-12 flex flex-wrap items-center gap-4">
+      <div class="mt-14 flex flex-wrap items-center gap-4">
         <a
           href="/kontakt"
           class="border border-brand-green px-8 py-4 text-sm font-semibold text-brand-green transition-colors hover:bg-brand-green hover:text-black"
@@ -66,21 +66,21 @@ const outcomes = [
   </section>
 
   <!-- 2. Selbst-Einordnung -->
-  <section class="border-b border-white/10 px-6 py-20">
+  <section class="border-b border-white/10 px-6 py-24 md:px-8 md:py-32">
     <div class="mx-auto max-w-content">
-      <p class="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
+      <p class="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
         Wo stehst du?
       </p>
-      <h2 class="font-display mb-12 max-w-2xl text-3xl font-semibold leading-tight md:text-4xl">
+      <h2 class="font-display mb-16 max-w-2xl text-3xl font-semibold leading-tight md:text-4xl">
         Wie können wir dir helfen?
       </h2>
       <div class="grid gap-px bg-white/10 md:grid-cols-3">
         {
           paths.map((p) => (
-            <a href={p.href} class="group flex flex-col gap-4 bg-black p-8 transition-colors hover:bg-white/[0.02]">
+            <a href={p.href} class="group flex flex-col gap-5 bg-black p-8 transition-colors hover:bg-white/[0.02] md:p-10">
               <h3 class="font-display text-xl font-semibold leading-snug">{p.title}</h3>
-              <p class="text-sm leading-relaxed text-white/55">{p.text}</p>
-              <span class="mt-2 text-sm font-semibold text-brand-green">
+              <p class="leading-relaxed text-white/55">{p.text}</p>
+              <span class="mt-auto pt-2 text-sm font-semibold text-brand-green">
                 Mehr erfahren
               </span>
             </a>
@@ -91,18 +91,18 @@ const outcomes = [
   </section>
 
   <!-- 3. Haltung -->
-  <section class="border-b border-white/10 px-6 py-20">
+  <section class="border-b border-white/10 px-6 py-24 md:px-8 md:py-32">
     <div class="mx-auto max-w-content">
-      <div class="grid gap-16 md:grid-cols-2 md:gap-24">
+      <div class="grid gap-14 md:grid-cols-2 md:gap-28">
         <div>
-          <p class="mb-6 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
+          <p class="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
             Unsere Haltung
           </p>
           <h2 class="font-display text-3xl font-semibold leading-tight md:text-4xl">
             In deutschen Unternehmen steckt mehr Expertise als sichtbar ist.
           </h2>
         </div>
-        <div class="space-y-6 leading-relaxed text-white/60">
+        <div class="space-y-6 text-lg leading-relaxed text-white/60">
           <p>
             Das Problem ist selten die Kompetenz. Es ist die Sichtbarkeit. Wer
             heute nach einem Anbieter sucht, entscheidet sich für den, dem er
@@ -123,71 +123,71 @@ const outcomes = [
   </section>
 
   <!-- 4. Der Weg / Methode-Teaser -->
-  <section class="border-b border-white/10 px-6 py-20">
+  <section class="border-b border-white/10 px-6 py-24 md:px-8 md:py-32">
     <div class="mx-auto max-w-content">
-      <p class="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
+      <p class="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
         Der Weg
       </p>
       <h2 class="font-display mb-6 max-w-2xl text-3xl font-semibold leading-tight md:text-4xl">
         So entsteht Sichtbarkeit, Schritt für Schritt.
       </h2>
-      <p class="mb-12 max-w-xl text-lg leading-relaxed text-white/55">
+      <p class="mb-16 max-w-xl text-lg leading-relaxed text-white/55">
         Sichtbarkeit ist kein Zufall, sondern ein System. Wir zeigen dir den
         kompletten Weg offen, ehrlich genug, dass du ihn selbst gehen könntest.
       </p>
       <div class="grid gap-px bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
         {
           steps.map((s) => (
-            <div class="flex flex-col gap-3 bg-black p-6">
+            <div class="flex flex-col gap-4 bg-black p-8 md:p-10">
               <span class="font-display text-2xl font-semibold text-brand-green">{s.n}</span>
               <h3 class="font-display text-base font-semibold leading-snug">{s.title}</h3>
-              <p class="text-sm leading-relaxed text-white/55">{s.text}</p>
+              <p class="leading-relaxed text-white/55">{s.text}</p>
             </div>
           ))
         }
       </div>
-      <a href="/methode" class="mt-10 inline-block text-sm font-semibold text-brand-green hover:underline">
+      <a href="/methode" class="mt-12 inline-block text-sm font-semibold text-brand-green hover:underline">
         Die ganze Methode ansehen
       </a>
     </div>
   </section>
 
   <!-- 5. Proof -->
-  <section class="border-b border-white/10 px-6 py-20">
+  <section class="border-b border-white/10 px-6 py-24 md:px-8 md:py-32">
     <div class="mx-auto max-w-content">
-      <p class="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
+      <p class="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
         Was dabei entsteht
       </p>
-      <h2 class="font-display mb-12 max-w-2xl text-3xl font-semibold leading-tight md:text-4xl">
+      <h2 class="font-display mb-16 max-w-2xl text-3xl font-semibold leading-tight md:text-4xl">
         Sichtbarkeit, die sich in Ergebnissen zeigt.
       </h2>
       <div class="grid gap-px bg-white/10 md:grid-cols-3">
         {
           outcomes.map((o) => (
-            <div class="bg-black p-8">
+            <div class="bg-black p-8 md:p-12">
               <p class="font-display text-2xl font-semibold text-brand-green md:text-3xl">{o}</p>
             </div>
           ))
         }
       </div>
-      <a href="/referenzen" class="mt-10 inline-block text-sm font-semibold text-brand-green hover:underline">
+      <a href="/referenzen" class="mt-12 inline-block text-sm font-semibold text-brand-green hover:underline">
         Referenzen ansehen
       </a>
     </div>
   </section>
 
   <!-- 6. Value-Content -->
-  <section class="border-b border-white/10 px-6 py-20">
+  <section class="border-b border-white/10 px-6 py-24 md:px-8 md:py-32">
     <div class="mx-auto max-w-content">
-      <div class="grid items-center gap-12 md:grid-cols-2 md:gap-16">
+      <div class="grid items-center gap-14 md:grid-cols-2 md:gap-20">
         <div>
-          <p class="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
+          <p class="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
             Aus unseren Videos
           </p>
           <h2 class="font-display mb-6 text-3xl font-semibold leading-tight md:text-4xl">
             Wir machen selbst, was wir für dich tun.
           </h2>
-          <p class="mb-6 text-lg leading-relaxed text-white/55">
+          <p class="mb-8 text-lg leading-relaxed text-white/55">
             Auf unserem YouTube-Kanal zeigen wir offen, wie wir denken,
             produzieren und Sichtbarkeit aufbauen. Schau vorbei und mach dir
             selbst ein Bild.
@@ -207,18 +207,18 @@ const outcomes = [
   </section>
 
   <!-- 7. So arbeiten wir zusammen -->
-  <section class="border-b border-white/10 px-6 py-20">
+  <section class="px-6 py-24 md:px-8 md:py-32">
     <div class="mx-auto max-w-content">
-      <div class="grid gap-16 md:grid-cols-2 md:gap-24">
+      <div class="grid gap-14 md:grid-cols-2 md:gap-28">
         <div>
-          <p class="mb-6 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
+          <p class="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
             Zusammenarbeit
           </p>
           <h2 class="font-display text-3xl font-semibold leading-tight md:text-4xl">
             Und wenn du es mit Profis machen willst.
           </h2>
         </div>
-        <div class="space-y-6 leading-relaxed text-white/60">
+        <div class="space-y-6 text-lg leading-relaxed text-white/60">
           <p>
             Alles, was du brauchst, um es selbst umzusetzen, zeigen wir offen.
             Wenn du es lieber mit einem Team machst, das genau das täglich tut,

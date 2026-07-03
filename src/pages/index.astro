@@ -194,13 +194,12 @@ const aufwandPasstNicht = 14;
           <p class="text-xs font-semibold uppercase tracking-widest text-white/50">
             Der passende Auftrag
           </p>
-          <p class="mb-8 mt-2 text-sm text-white/40">
-            Aufwand, Mitarbeiter, Arbeitsmittel, Zeit
-          </p>
-          <div class="mb-12 flex max-w-52 flex-wrap gap-3">
+          <div class="mb-12 mt-8 flex max-w-52 flex-wrap gap-3">
             {
               Array.from({ length: aufwandPasst }).map(() => (
-                <span class="effort-dot h-5 w-5 rounded-full bg-white/40" />
+                <span class="effort-dot inline-block h-5 w-5">
+                  <span class="dot-inner block h-full w-full rounded-full bg-white/40" />
+                </span>
               ))
             }
           </div>
@@ -218,13 +217,12 @@ const aufwandPasstNicht = 14;
           <p class="text-xs font-semibold uppercase tracking-widest text-white/50">
             Der unpassende Auftrag
           </p>
-          <p class="mb-8 mt-2 text-sm text-white/40">
-            Aufwand, Mitarbeiter, Arbeitsmittel, Zeit
-          </p>
-          <div class="mb-12 flex max-w-52 flex-wrap gap-3">
+          <div class="mb-12 mt-8 flex max-w-52 flex-wrap gap-3">
             {
               Array.from({ length: aufwandPasstNicht }).map(() => (
-                <span class="effort-dot h-5 w-5 rounded-full bg-white/40" />
+                <span class="effort-dot inline-block h-5 w-5">
+                  <span class="dot-inner block h-full w-full rounded-full bg-white/40" />
+                </span>
               ))
             }
           </div>
@@ -239,9 +237,8 @@ const aufwandPasstNicht = 14;
         </div>
       </div>
 
-      <p class="mt-10 max-w-2xl text-lg leading-relaxed text-white/70">
-        Gleiches Ergebnis, deutlich mehr Aufwand, Mitarbeiter, Arbeitsmittel und
-        Zeit.
+      <p class="mt-12 font-display text-2xl font-bold leading-tight md:text-3xl">
+        Gleiches Ergebnis, unterschiedlicher Aufwand.
       </p>
     </div>
   </section>

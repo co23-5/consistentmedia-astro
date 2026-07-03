@@ -74,3 +74,56 @@
     border-radius: 2px;
   }
 }
+
+/* Cookie-Consent (vanilla-cookieconsent) ans Brand-Design angepasst */
+#cc-main {
+  --cc-font-family: "Montserrat", sans-serif;
+  --cc-bg: #0a0a0a;
+  --cc-primary-color: #ffffff;
+  --cc-secondary-color: rgba(255, 255, 255, 0.6);
+  --cc-link-color: #66ff99;
+
+  --cc-btn-primary-bg: #66ff99;
+  --cc-btn-primary-color: #000000;
+  --cc-btn-primary-border-color: #66ff99;
+  --cc-btn-primary-hover-bg: #52e085;
+  --cc-btn-primary-hover-color: #000000;
+  --cc-btn-primary-hover-border-color: #52e085;
+
+  --cc-btn-secondary-bg: rgba(255, 255, 255, 0.08);
+  --cc-btn-secondary-color: #ffffff;
+  --cc-btn-secondary-border-color: transparent;
+  --cc-btn-secondary-hover-bg: rgba(255, 255, 255, 0.16);
+  --cc-btn-secondary-hover-color: #ffffff;
+  --cc-btn-secondary-hover-border-color: transparent;
+
+  --cc-separator-border-color: rgba(255, 255, 255, 0.1);
+  --cc-toggle-on-bg: #66ff99;
+  --cc-toggle-off-bg: rgba(255, 255, 255, 0.25);
+  --cc-toggle-on-knob-bg: #000000;
+  --cc-toggle-off-knob-bg: #ffffff;
+
+  --cc-cookie-category-block-bg: rgba(255, 255, 255, 0.03);
+  --cc-cookie-category-block-border: rgba(255, 255, 255, 0.08);
+  --cc-cookie-category-block-hover-bg: rgba(255, 255, 255, 0.06);
+  --cc-cookie-category-block-hover-border: rgba(255, 255, 255, 0.12);
+  --cc-cookie-category-expanded-block-bg: rgba(255, 255, 255, 0.04);
+
+  --cc-overlay-bg: rgba(0, 0, 0, 0.7);
+  --cc-modal-border-radius: 0;
+  --cc-btn-border-radius: 0;
+}
+
+/* "Alle ablehnen" gleich prominent wie "Akzeptieren", aber als Outline abgesetzt */
+#cc-main .cm__btn[data-role="necessary"],
+#cc-main .pm__btn[data-role="necessary"] {
+  background: transparent;
+  color: #66ff99;
+  border: 1px solid #66ff99;
+}
+#cc-main .cm__btn[data-role="necessary"]:hover,
+#cc-main .pm__btn[data-role="necessary"]:hover {
+  background: #66ff99;
+  color: #000000;
+  border-color: #66ff99;
+}

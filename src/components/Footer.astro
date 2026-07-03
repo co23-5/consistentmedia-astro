@@ -1,0 +1,111 @@
+---
+import Wordmark from "./Wordmark.astro";
+import { social } from "../lib/social";
+
+const gtmId = import.meta.env.PUBLIC_GTM_ID;
+
+const links = {
+  Agentur: [
+    { label: "Methode", href: "/methode" },
+    { label: "Leistungen", href: "/leistungen" },
+    { label: "Referenzen", href: "/referenzen" },
+    { label: "Über uns", href: "/agentur" },
+  ],
+  Ressourcen: [
+    { label: "Wissen", href: "/wissen" },
+    { label: "Karriere", href: "/karriere" },
+    { label: "Kontakt", href: "/kontakt" },
+  ],
+  Rechtliches: [
+    { label: "Impressum", href: "/impressum" },
+    { label: "Datenschutz", href: "/datenschutz" },
+  ],
+};
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-white/10 bg-black">
+  <div class="mx-auto max-w-content px-6 py-16">
+    <div class="grid grid-cols-2 gap-10 md:grid-cols-4">
+      <!-- Brand -->
+      <div class="col-span-2 md:col-span-1">
+        <a href="/" aria-label="Consistent Media — Startseite">
+          <Wordmark class="mb-4 h-6 w-auto fill-white" />
+        </a>
+        <p class="text-sm leading-relaxed text-white/55">Expertise sichtbar machen.</p>
+        <a
+          href="/kontakt"
+          class="mt-4 inline-block border border-brand-green px-5 py-2 text-sm font-semibold text-brand-green transition-colors hover:bg-brand-green hover:text-black"
+        >
+          Kontakt
+        </a>
+
+        <!-- Social -->
+        <div class="mt-8 flex items-center gap-3">
+          <a
+            href={social.youtube}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Consistent Media auf YouTube"
+            class="flex h-10 w-10 items-center justify-center border border-white/15 text-white/60 transition-colors hover:border-brand-green hover:text-brand-green"
+          >
+            <svg viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor" aria-hidden="true">
+              <path d="M23.5 6.2a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.51A3.02 3.02 0 0 0 .5 6.2C0 8.08 0 12 0 12s0 3.92.5 5.8a3.02 3.02 0 0 0 2.12 2.14c1.88.51 9.38.51 9.38.51s7.5 0 9.38-.51a3.02 3.02 0 0 0 2.12-2.14C24 15.92 24 12 24 12s0-3.92-.5-5.8ZM9.6 15.57V8.43L15.82 12 9.6 15.57Z"></path>
+            </svg>
+          </a>
+          <a
+            href={social.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Consistent Media auf Instagram"
+            class="flex h-10 w-10 items-center justify-center border border-white/15 text-white/60 transition-colors hover:border-brand-green hover:text-brand-green"
+          >
+            <svg viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor" aria-hidden="true">
+              <path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 0 1-1.38-.9 3.72 3.72 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16ZM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.72-2.12 1.39A5.88 5.88 0 0 0 .63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.39 2.12.66.67 1.33 1.09 2.12 1.39.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.88 5.88 0 0 0 2.12-1.39 5.88 5.88 0 0 0 1.39-2.12c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.88 5.88 0 0 0-1.39-2.12A5.88 5.88 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0Zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.41-10.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88Z"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Link-Spalten -->
+      {
+        Object.entries(links).map(([title, items]) => (
+          <div>
+            <p class="mb-4 text-xs font-semibold uppercase tracking-widest text-white/50">
+              {title}
+            </p>
+            <ul class="flex flex-col gap-3">
+              {items.map(({ label, href }) => (
+                <li>
+                  <a href={href} class="text-sm text-white/60 transition-colors hover:text-white">
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+
+    <div
+      class="mt-16 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/50 md:flex-row md:items-center"
+    >
+      <p>© {year} Consistent Media</p>
+      <div class="flex items-center gap-4">
+        {
+          gtmId && (
+            <button
+              type="button"
+              id="cookie-settings"
+              class="transition-colors hover:text-white"
+            >
+              Cookie-Einstellungen
+            </button>
+          )
+        }
+        <p>Alle Rechte vorbehalten</p>
+      </div>
+    </div>
+  </div>
+</footer>

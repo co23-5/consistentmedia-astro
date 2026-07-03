@@ -1,0 +1,128 @@
+---
+// Zentrale Consent-Verwaltung (DSGVO / TDDDG).
+// Env-gesteuert: nur aktiv, wenn PUBLIC_GTM_ID gesetzt ist. Ohne ID kein Banner,
+// kein Tracking (nur cookiefreies Analytics). Ablauf bei gesetzter ID:
+//   1. Google Consent Mode v2: alle Speicher per Default "denied"
+//   2. Banner (vanilla-cookieconsent) erfragt Statistik / Marketing
+//   3. Bei Zustimmung: Consent Mode -> "granted", GTM lädt/feuert consent-gated
+import "vanilla-cookieconsent/dist/cookieconsent.css";
+---
+
+<script>
+  import * as CookieConsent from "vanilla-cookieconsent";
+
+  const GTM_ID = import.meta.env.PUBLIC_GTM_ID;
+
+  if (GTM_ID) {
+    const w = window as any;
+    w.dataLayer = w.dataLayer || [];
+    const gtag = (...args: any[]) => w.dataLayer.push(args);
+
+    gtag("consent", "default", {
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied",
+      analytics_storage: "denied",
+      functionality_storage: "denied",
+      personalization_storage: "denied",
+      security_storage: "granted",
+      wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true);
+    w.dataLayer.push({ "gtm.start": Date.now(), event: "gtm.js" });
+
+    const syncConsentMode = () => {
+      const statistics = CookieConsent.acceptedCategory("analytics");
+      const marketing = CookieConsent.acceptedCategory("marketing");
+      gtag("consent", "update", {
+        analytics_storage: statistics ? "granted" : "denied",
+        ad_storage: marketing ? "granted" : "denied",
+        ad_user_data: marketing ? "granted" : "denied",
+        ad_personalization: marketing ? "granted" : "denied",
+      });
+    };
+
+    const loadGtm = () => {
+      if (document.getElementById("gtm-script")) return;
+      const s = document.createElement("script");
+      s.id = "gtm-script";
+      s.async = true;
+      s.src = `https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`;
+      document.head.appendChild(s);
+    };
+
+    CookieConsent.run({
+      revision: 1,
+      guiOptions: {
+        consentModal: { layout: "box wide", position: "bottom left" },
+        preferencesModal: { layout: "box" },
+      },
+      categories: {
+        necessary: { enabled: true, readOnly: true },
+        analytics: {},
+        marketing: {},
+      },
+      language: {
+        default: "de",
+        translations: {
+          de: {
+            consentModal: {
+              title: "Wir respektieren deine Privatsphäre",
+              description:
+                "Wir nutzen Cookies und ähnliche Technologien, um die Nutzung unserer Website zu verstehen und unsere Inhalte zu verbessern. Du entscheidest selbst, was wir verwenden dürfen. Deine Wahl kannst du jederzeit über die Cookie-Einstellungen im Footer ändern.",
+              acceptAllBtn: "Alle akzeptieren",
+              acceptNecessaryBtn: "Alle ablehnen",
+              showPreferencesBtn: "Einstellungen",
+              footer:
+                '<a href="/datenschutz">Datenschutz</a><a href="/impressum">Impressum</a>',
+            },
+            preferencesModal: {
+              title: "Cookie-Einstellungen",
+              acceptAllBtn: "Alle akzeptieren",
+              acceptNecessaryBtn: "Alle ablehnen",
+              savePreferencesBtn: "Auswahl speichern",
+              closeIconLabel: "Schließen",
+              sections: [
+                {
+                  title: "Notwendig",
+                  description:
+                    "Diese Cookies sind für den Betrieb der Website erforderlich und können nicht deaktiviert werden.",
+                  linkedCategory: "necessary",
+                },
+                {
+                  title: "Statistik",
+                  description:
+                    "Helfen uns zu verstehen, wie Besucher die Website nutzen, damit wir sie verbessern können. Alle Daten werden anonymisiert erhoben.",
+                  linkedCategory: "analytics",
+                },
+                {
+                  title: "Marketing",
+                  description:
+                    "Werden genutzt, um die Wirksamkeit von Kampagnen zu messen und Inhalte relevanter auszuspielen.",
+                  linkedCategory: "marketing",
+                },
+                {
+                  title: "Mehr Informationen",
+                  description:
+                    'Details findest du in unserer <a href="/datenschutz">Datenschutzerklärung</a>.',
+                },
+              ],
+            },
+          },
+        },
+      },
+      onFirstConsent: syncConsentMode,
+      onConsent: () => {
+        syncConsentMode();
+        loadGtm();
+      },
+      onChange: syncConsentMode,
+    });
+
+    if (CookieConsent.validConsent()) loadGtm();
+
+    document
+      .getElementById("cookie-settings")
+      ?.addEventListener("click", () => CookieConsent.showPreferences());
+  }
+</script>

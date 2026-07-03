@@ -1,0 +1,73 @@
+---
+interface Props {
+  /** YouTube-Video-ID (der Teil nach v= bzw. youtu.be/) */
+  id: string;
+  /** Titel für Screenreader und als Overlay-Beschriftung */
+  title: string;
+  /**
+   * Lokaler Vorschaubild-Pfad (z.B. /video/xyz.jpg im /public-Ordner).
+   * Bewusst KEIN YouTube-Thumbnail per Default: das würde schon beim Laden
+   * Google kontaktieren. Ohne thumbnail zeigen wir einen gebrandeten
+   * Platzhalter, ganz ohne externen Request.
+   */
+  thumbnail?: string;
+  class?: string;
+}
+const { id, title, thumbnail, class: className } = Astro.props;
+---
+
+<!-- Click-to-Load: erst beim Klick wird das youtube-nocookie-iframe geladen.
+     Bis dahin geht kein Request an Google, es werden keine Cookies gesetzt. -->
+<div
+  class:list={[
+    "yt-embed relative aspect-video w-full overflow-hidden bg-brand-gray-900",
+    className,
+  ]}
+  data-id={id}
+  data-title={title}
+>
+  <button
+    type="button"
+    class="yt-play group absolute inset-0 flex items-center justify-center"
+    aria-label={`Video abspielen: ${title}`}
+  >
+    {
+      thumbnail ? (
+        <img
+          src={thumbnail}
+          alt=""
+          class="absolute inset-0 h-full w-full object-cover"
+        />
+      ) : (
+        <div class="absolute inset-0 bg-gradient-to-br from-brand-gray-800 to-black" />
+      )
+    }
+    <div class="absolute inset-0 bg-black/30 transition-colors group-hover:bg-black/20"></div>
+    <span class="relative flex h-16 w-16 items-center justify-center rounded-full bg-brand-green text-black transition-transform group-hover:scale-110">
+      <svg viewBox="0 0 24 24" class="ml-1 h-7 w-7" fill="currentColor" aria-hidden="true">
+        <path d="M8 5v14l11-7z"></path>
+      </svg>
+    </span>
+    <span class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 text-left text-sm font-semibold text-white">
+      {title}
+    </span>
+  </button>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>(".yt-embed").forEach((el) => {
+    const btn = el.querySelector(".yt-play");
+    btn?.addEventListener("click", () => {
+      const id = el.getAttribute("data-id");
+      const title = el.getAttribute("data-title") ?? "";
+      const iframe = document.createElement("iframe");
+      iframe.className = "absolute inset-0 h-full w-full";
+      iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
+      iframe.title = title;
+      iframe.allow =
+        "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+      iframe.allowFullscreen = true;
+      el.replaceChildren(iframe);
+    });
+  });
+</script>

@@ -1,0 +1,96 @@
+---
+import Wordmark from "./Wordmark.astro";
+
+const nav = [
+  { label: "Methode", href: "/methode" },
+  { label: "Leistungen", href: "/leistungen" },
+  { label: "Referenzen", href: "/referenzen" },
+  { label: "Wissen", href: "/wissen" },
+  { label: "Agentur", href: "/agentur" },
+];
+
+const path = Astro.url.pathname;
+---
+
+<header
+  class="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-black md:bg-black/90 md:backdrop-blur-sm"
+>
+  <div class="mx-auto flex max-w-content items-center justify-between px-6 py-4">
+    <!-- Logo: Signet mobil, Wortmarke ab md -->
+    <a href="/" class="flex items-center" aria-label="Consistent Media — Startseite">
+      <svg
+        viewBox="0 0 403.22 215.51"
+        class="h-7 w-auto fill-brand-green md:hidden"
+        aria-hidden="true"
+      >
+        <path
+          d="M388.33,50.67c-9.93-16.13-23.72-28.6-41.36-37.43C329.31,4.42,308.63,0,284.92,0s-44.05,4.42-61.84,13.24c-17.79,8.83-31.64,21.3-41.57,37.43-9.93,16.13-14.89,35.23-14.89,57.29,0,4.24.19,8.38.57,12.41h-.07v3.31c0,13.23-4.55,22.55-13.65,27.92-9.1,5.38-21.79,8.06-38.06,8.06-18.48,0-32.06-3.93-40.74-11.79-8.69-7.86-13.03-21.16-13.03-39.92s4.34-32.81,13.03-40.54c8.69-7.72,22.27-11.58,40.74-11.58,12.11,0,22.22,1.51,30.35,4.49l31.85-48.11c-.74-.35-1.46-.72-2.22-1.05C158.56,3.73,138.99,0,116.65,0,93.21,0,72.66,4.42,55.02,13.24c-17.65,8.83-31.23,21.3-40.74,37.43C4.76,66.81,0,85.91,0,107.96s4.76,40.74,14.27,56.88c9.52,16.13,23.09,28.61,40.74,37.43,17.65,8.83,38.19,13.24,61.63,13.24s41.91-3.73,58.74-11.17c9.95-4.4,18.58-9.85,25.93-16.33,6.45,5.5,13.7,10.26,21.76,14.26,17.79,8.83,38.4,13.24,61.84,13.24s44.4-4.41,62.05-13.24c17.64-8.82,31.44-21.3,41.36-37.43,9.93-16.13,14.89-35.09,14.89-56.88s-4.96-41.16-14.89-57.29ZM328.97,147.88c-8.42,8.41-23.1,12.62-44.05,12.62s-35.65-4.2-44.05-12.62c-8.42-8.41-12.61-21.72-12.61-39.92s4.2-31.99,12.61-40.54c8.41-8.54,23.09-12.82,44.05-12.82s35.64,4.28,44.05,12.82c8.41,8.55,12.62,22.07,12.62,40.54s-4.21,31.51-12.62,39.92Z"
+        ></path>
+      </svg>
+      <Wordmark class="hidden h-7 w-auto fill-white md:block" />
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="hidden items-center gap-8 md:flex">
+      {
+        nav.map(({ label, href }) => (
+          <a
+            href={href}
+            class:list={[
+              "text-sm font-medium transition-colors hover:text-brand-green",
+              path === href ? "text-brand-green" : "text-white/70",
+            ]}
+          >
+            {label}
+          </a>
+        ))
+      }
+      <a
+        href="/kontakt"
+        class="border border-brand-green px-5 py-2 text-sm font-semibold text-brand-green transition-colors hover:bg-brand-green hover:text-black"
+      >
+        Kontakt
+      </a>
+    </nav>
+
+    <!-- Mobile Toggle -->
+    <button
+      id="menu-toggle"
+      class="flex flex-col gap-1.5 md:hidden"
+      aria-label="Menü öffnen"
+      aria-expanded="false"
+    >
+      <span class="block h-px w-6 bg-white"></span>
+      <span class="block h-px w-6 bg-white"></span>
+      <span class="block h-px w-6 bg-white"></span>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden border-t border-white/10 bg-black px-6 py-6 md:hidden">
+    <nav class="flex flex-col gap-6">
+      {
+        nav.map(({ label, href }) => (
+          <a href={href} class="text-lg font-medium text-white/70 hover:text-brand-green">
+            {label}
+          </a>
+        ))
+      }
+      <a
+        href="/kontakt"
+        class="mt-2 border border-brand-green px-5 py-3 text-center text-sm font-semibold text-brand-green"
+      >
+        Kontakt
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById("menu-toggle");
+  const menu = document.getElementById("mobile-menu");
+  toggle?.addEventListener("click", () => {
+    const open = menu?.classList.toggle("hidden") === false;
+    toggle.setAttribute("aria-expanded", String(open));
+  });
+</script>

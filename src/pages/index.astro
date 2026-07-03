@@ -1,9 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import YouTubeEmbed from "../components/YouTubeEmbed.astro";
 ---
 
 <Layout title="Consistent Media">
-  <section class="mx-auto flex min-h-screen max-w-content flex-col justify-center px-6">
+  <section class="mx-auto max-w-content px-6 py-24">
     <p class="mb-6 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
       Astro-Relaunch
     </p>
@@ -11,7 +12,12 @@ import Layout from "../layouts/Layout.astro";
       Expertise <span class="text-brand-green">sichtbar</span> machen.
     </h1>
     <p class="mt-8 max-w-xl text-lg leading-relaxed text-white/60 md:text-xl">
-      Fundament steht. Ab hier bauen wir die Startseite nach der Journey auf.
+      Fundament und Bausteine stehen. Ab hier bauen wir die Startseite nach der
+      Journey auf.
     </p>
+
+    <div class="mt-16 max-w-2xl">
+      <YouTubeEmbed id="dQw4w9WgXcQ" title="Testvideo Consistent Media" />
+    </div>
   </section>
 </Layout>

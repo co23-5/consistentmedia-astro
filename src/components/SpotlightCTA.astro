@@ -1,0 +1,118 @@
+---
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  buttonLabel?: string;
+}
+const {
+  eyebrow = "Zusammenarbeit",
+  title = "Bereit, deine Expertise sichtbar zu machen?",
+  buttonLabel = "Zusammenarbeit anfragen",
+} = Astro.props;
+---
+
+<section
+  id="spotlight-cta"
+  class="relative overflow-hidden border-t border-white/10 bg-black px-6 py-32 md:px-8 md:py-48"
+>
+  <div id="spot-glow" class="pointer-events-none absolute left-0 top-0 h-[600px] w-[600px] rounded-full opacity-0"></div>
+
+  <div class="relative z-10 mx-auto max-w-content text-center">
+    <p class="mb-8 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
+      {eyebrow}
+    </p>
+    <div id="spot-headline" class="relative mx-auto max-w-3xl">
+      <h2 class="font-display text-4xl font-bold leading-tight text-white/30 md:text-6xl">
+        {title}
+      </h2>
+      <div
+        id="spot-bright"
+        aria-hidden="true"
+        class="font-display pointer-events-none absolute inset-0 text-4xl font-bold leading-tight text-white md:text-6xl"
+      >
+        {title}
+      </div>
+    </div>
+    <a
+      href="/kontakt"
+      class="mt-12 inline-block bg-brand-green px-10 py-4 text-sm font-semibold text-black transition-opacity hover:opacity-90"
+    >
+      {buttonLabel}
+    </a>
+  </div>
+</section>
+
+<style>
+  #spot-glow {
+    background: radial-gradient(circle, rgba(102, 255, 153, 0.2), transparent 60%);
+    filter: blur(30px);
+    transform: translate(var(--gx, 50%), var(--gy, 50%)) translate(-50%, -50%);
+    transition: opacity 0.5s ease;
+  }
+  #spotlight-cta.is-active #spot-glow {
+    opacity: 1;
+  }
+  #spot-bright {
+    -webkit-mask-image: radial-gradient(
+      circle 220px at var(--hx, 50%) var(--hy, 50%),
+      #000 0%,
+      #000 38%,
+      transparent 78%
+    );
+    mask-image: radial-gradient(
+      circle 220px at var(--hx, 50%) var(--hy, 50%),
+      #000 0%,
+      #000 38%,
+      transparent 78%
+    );
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #spot-bright {
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+    #spot-glow {
+      opacity: 0.4;
+    }
+  }
+</style>
+
+<script>
+  const sec = document.getElementById("spotlight-cta");
+  const bright = document.getElementById("spot-bright");
+  const headline = document.getElementById("spot-headline");
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (sec && bright && headline && !reduce) {
+    let lastMove = -9999;
+
+    const place = (clientX: number, clientY: number) => {
+      const s = sec.getBoundingClientRect();
+      const h = headline.getBoundingClientRect();
+      sec.style.setProperty("--gx", clientX - s.left + "px");
+      sec.style.setProperty("--gy", clientY - s.top + "px");
+      bright.style.setProperty("--hx", clientX - h.left + "px");
+      bright.style.setProperty("--hy", clientY - h.top + "px");
+    };
+
+    sec.addEventListener("mousemove", (e) => {
+      lastMove = performance.now();
+      sec.classList.add("is-active");
+      place(e.clientX, e.clientY);
+    });
+
+    // Auto-Drift, wenn keine Maus (Mobil) oder Maus inaktiv
+    const loop = (now: number) => {
+      if (now - lastMove > 1200) {
+        sec.classList.add("is-active");
+        const s = sec.getBoundingClientRect();
+        const t = now / 1000;
+        const x = s.left + s.width * (0.5 + 0.33 * Math.sin(t * 0.55));
+        const y = s.top + s.height * (0.5 + 0.3 * Math.cos(t * 0.4));
+        place(x, y);
+      }
+      requestAnimationFrame(loop);
+    };
+    requestAnimationFrame(loop);
+  }
+</script>

@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+/* Brand-Tokens Consistent Media (Tailwind v4) */
+@theme {
+  --color-brand-green: #66ff99;
+  --color-brand-black: #000000;
+  --color-brand-white: #ffffff;
+  --color-brand-gray-50: #f7f7f7;
+  --color-brand-gray-100: #ebebeb;
+  --color-brand-gray-200: #d4d4d4;
+  --color-brand-gray-300: #b0b0b0;
+  --color-brand-gray-400: #888888;
+  --color-brand-gray-500: #555555;
+  --color-brand-gray-600: #333333;
+  --color-brand-gray-700: #1f1f1f;
+  --color-brand-gray-800: #141414;
+  --color-brand-gray-900: #0a0a0a;
+
+  --font-display: "ClashDisplay", sans-serif;
+  --font-sans: "Montserrat", sans-serif;
+}
+
+/* max-w-content Utility (entspricht 1200px Content-Breite) */
+@utility max-w-content {
+  max-width: 1200px;
+}
+
+/* Lokale Schriften (kein Google Fonts CDN, Datenschutz) */
+@font-face {
+  font-family: "ClashDisplay";
+  src: url("/fonts/ClashDisplay-Variable.woff2") format("woff2"),
+       url("/fonts/ClashDisplay-Variable.ttf") format("truetype");
+  font-weight: 200 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/Montserrat-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/Montserrat-Italic-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@layer base {
+  html {
+    background: #000;
+    color: #fff;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    overscroll-behavior-y: none;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    /* Zeilen ausbalancieren, keine einzelnen Woerter in der letzten Zeile */
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-brand-green);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}

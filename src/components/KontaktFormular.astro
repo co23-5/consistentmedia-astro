@@ -1,0 +1,138 @@
+---
+const ANLIEGEN = [
+  "YouTube-Strategie & Kanalaufbau",
+  "Content-Produktion",
+  "Performance / Paid Ads",
+  "Rundum-Betreuung",
+  "Noch nicht sicher",
+];
+const UNTERNEHMENSGROESSE = [
+  "unter 500k Jahresumsatz",
+  "500k – 3 Mio. Jahresumsatz",
+  "3 Mio.+ Jahresumsatz",
+];
+
+const inputClass =
+  "border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-white placeholder:text-white/25 focus:border-brand-green/50 focus:outline-none";
+const labelClass =
+  "text-xs font-semibold uppercase tracking-widest text-white/55";
+---
+
+<div id="form-success" class="hidden flex-col justify-center gap-4 border border-brand-green/30 p-10">
+  <p class="font-display text-2xl font-semibold">Danke für deine Anfrage.</p>
+  <p class="leading-relaxed text-white/60">
+    Wir sichten jede Anfrage persönlich. Passt es, melden wir uns innerhalb von
+    24 Stunden für ein Gespräch.
+  </p>
+</div>
+
+<form id="kontakt-form" class="flex flex-col gap-5">
+  <div
+    aria-hidden="true"
+    class="pointer-events-none absolute left-[-9999px] top-[-9999px] h-0 w-0 overflow-hidden opacity-0"
+  >
+    <label>Website<input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+  </div>
+
+  <div class="grid gap-5 sm:grid-cols-2">
+    <div class="flex flex-col gap-2">
+      <label class={labelClass} for="name">Name <span class="text-brand-green">*</span></label>
+      <input class={inputClass} id="name" name="name" required />
+    </div>
+    <div class="flex flex-col gap-2">
+      <label class={labelClass} for="email">E-Mail <span class="text-brand-green">*</span></label>
+      <input class={inputClass} id="email" name="email" type="email" required />
+    </div>
+  </div>
+
+  <div class="flex flex-col gap-2">
+    <label class={labelClass} for="company">Unternehmen <span class="text-brand-green">*</span></label>
+    <input class={inputClass} id="company" name="company" required />
+  </div>
+
+  <div class="grid gap-5 sm:grid-cols-2">
+    <div class="flex flex-col gap-2">
+      <label class={labelClass} for="anliegen">Anliegen <span class="text-brand-green">*</span></label>
+      <select class={`${inputClass} appearance-none [&:invalid]:text-white/25`} id="anliegen" name="anliegen" required>
+        <option value="" disabled selected class="text-black">Bitte wählen</option>
+        {ANLIEGEN.map((o) => <option value={o} class="text-black">{o}</option>)}
+      </select>
+    </div>
+    <div class="flex flex-col gap-2">
+      <label class={labelClass} for="unternehmensgroesse">Unternehmensgröße <span class="text-brand-green">*</span></label>
+      <select class={`${inputClass} appearance-none [&:invalid]:text-white/25`} id="unternehmensgroesse" name="unternehmensgroesse" required>
+        <option value="" disabled selected class="text-black">Bitte wählen</option>
+        {UNTERNEHMENSGROESSE.map((o) => <option value={o} class="text-black">{o}</option>)}
+      </select>
+    </div>
+  </div>
+
+  <div class="flex flex-col gap-2">
+    <label class={labelClass} for="message">Dein Vorhaben <span class="text-brand-green">*</span></label>
+    <textarea
+      class={`${inputClass} resize-none`}
+      id="message"
+      name="message"
+      required
+      rows="5"
+      placeholder="Wo stehst du, wo willst du hin? Je konkreter, desto besser können wir die Passung einschätzen."
+    ></textarea>
+  </div>
+
+  <p id="form-error" class="hidden text-sm text-red-400">
+    Versand fehlgeschlagen. Bitte direkt an kontakt@consistentmedia.de schreiben.
+  </p>
+
+  <button
+    id="form-submit"
+    type="submit"
+    class="mt-2 bg-brand-green px-8 py-4 text-sm font-semibold text-black transition-opacity hover:opacity-90 disabled:opacity-50"
+  >
+    Zusammenarbeit anfragen
+  </button>
+</form>
+
+<script>
+  const form = document.getElementById("kontakt-form") as HTMLFormElement | null;
+  const success = document.getElementById("form-success");
+  const errorEl = document.getElementById("form-error");
+  const submit = document.getElementById("form-submit") as HTMLButtonElement | null;
+  const formLoadedAt = Date.now();
+
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!submit) return;
+    submit.disabled = true;
+    submit.textContent = "Wird gesendet...";
+    errorEl?.classList.add("hidden");
+
+    const data = new FormData(form);
+    try {
+      const res = await fetch("/api/kontakt", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: data.get("name"),
+          email: data.get("email"),
+          company: data.get("company"),
+          anliegen: data.get("anliegen"),
+          unternehmensgroesse: data.get("unternehmensgroesse"),
+          message: data.get("message"),
+          website: data.get("website"),
+          formLoadedAt,
+        }),
+      });
+      if (res.ok) {
+        form.classList.add("hidden");
+        success?.classList.remove("hidden");
+        success?.classList.add("flex");
+      } else {
+        throw new Error("failed");
+      }
+    } catch {
+      errorEl?.classList.remove("hidden");
+      submit.disabled = false;
+      submit.textContent = "Zusammenarbeit anfragen";
+    }
+  });
+</script>

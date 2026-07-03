@@ -4,9 +4,11 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
-import vercel from '@astrojs/vercel';
 
 // https://astro.build/config
+// Reines Static-Astro (kein Adapter). Formular-Endpoint und Preview-Passwort
+// laufen als native Vercel-Function bzw. Vercel-Edge-Middleware (siehe /api und
+// /middleware.ts), unabhaengig vom Astro-Build.
 export default defineConfig({
   site: 'https://consistentmedia.de',
   output: 'static',
@@ -21,5 +23,4 @@ export default defineConfig({
   },
 
   integrations: [sitemap(), mdx()],
-  adapter: vercel()
 });

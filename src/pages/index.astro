@@ -1,39 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import YouTubeEmbed from "../components/YouTubeEmbed.astro";
 import CTA from "../components/CTA.astro";
-import { social } from "../lib/social";
-
-const paths = [
-  {
-    title: "Online findet mich kaum jemand",
-    text: "Deine Kompetenz steht außer Frage, nur sieht sie online fast niemand. Sichtbarkeit lässt sich von Grund auf aufbauen.",
-    href: "/methode",
-  },
-  {
-    title: "Mein Kalender ist voll, aber die Anfragen passen nicht",
-    text: "Zu viele Anfragen kosten Zeit, ohne zu passen. Mit der richtigen Sichtbarkeit kommen gezielt die Menschen, für die du die beste Lösung bist.",
-    href: "/methode",
-  },
-  {
-    title: "Ich will Sichtbarkeit zum System machen",
-    text: "Es läuft, aber es hängt an dir und am Zufall. Zeit für einen verlässlichen Prozess, mit oder ohne fremde Hände.",
-    href: "/leistungen",
-  },
-];
-
-const steps = [
-  { n: "01", title: "Strategie und Kanalaufbau", text: "Positionierung, Themen, Format. Das Fundament, auf dem alles steht." },
-  { n: "02", title: "Content-Produktion", text: "Videos, die deine Expertise klar zeigen. Konstant, in hoher Qualität." },
-  { n: "03", title: "Distribution und Ads", text: "Damit die richtigen Menschen deine Inhalte sehen, nicht nur der Zufall." },
-  { n: "04", title: "Die richtigen Anfragen", text: "Aus Sichtbarkeit wird Vertrauen und daraus die Anfragen, die wirklich zu dir passen." },
-];
-
-const outcomes = [
-  "Vorqualifizierte Anfragen",
-  "Konstante Sichtbarkeit",
-  "Weniger Fragen, mehr System",
-];
 
 // Aufwand-Vergleich: gleicher Umsatz, sehr unterschiedlicher Aufwand.
 // Kreise = Aufwand (Mitarbeiter, Arbeitsmittel, Zeit ...), Rechteck = Umsatz.
@@ -300,110 +267,33 @@ const aufwandPasstNicht = 14;
     })();
   </script>
 
-  <!-- 3. Der Weg / Methode: das Wie -->
+  <!-- 2c. Das Ziel -->
   <section class="border-b border-white/10 px-6 py-24 md:px-8 md:py-32">
     <div class="mx-auto max-w-content">
       <p class="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
-        Der Weg
+        Das Ziel
       </p>
-      <h2 class="font-display mb-6 max-w-2xl text-3xl font-semibold leading-tight md:text-4xl">
-        So wird aus Können Sichtbarkeit.
+      <h2 class="font-display mb-16 max-w-3xl text-3xl font-semibold leading-tight md:text-4xl">
+        Ein klarer Online-Auftritt, der deine Expertise sichtbar macht und die
+        richtigen Menschen anzieht.
       </h2>
-      <p class="mb-16 max-w-xl text-lg leading-relaxed text-white/55">
-        Sichtbarkeit wirkt oft wie Zufall. In Wahrheit ist es ein System, das
-        sich lernen und wiederholen lässt. Schritt für Schritt, offen genug,
-        dass du ihn selbst gehen könntest.
-      </p>
-      <div class="grid gap-px bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
-        {
-          steps.map((s) => (
-            <div class="flex flex-col gap-4 bg-black p-8 md:p-10">
-              <span class="font-display text-2xl font-semibold text-brand-green">{s.n}</span>
-              <h3 class="font-display text-base font-semibold leading-snug">{s.title}</h3>
-              <p class="leading-relaxed text-white/55">{s.text}</p>
-            </div>
-          ))
-        }
-      </div>
-      <a href="/methode" class="mt-12 inline-block text-sm font-semibold text-brand-green hover:underline">
-        Die ganze Methode ansehen
-      </a>
-    </div>
-  </section>
-
-  <!-- 4. Proof -->
-  <section class="border-b border-white/10 px-6 py-24 md:px-8 md:py-32">
-    <div class="mx-auto max-w-content">
-      <p class="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
-        Was dabei entsteht
-      </p>
-      <h2 class="font-display mb-16 max-w-2xl text-3xl font-semibold leading-tight md:text-4xl">
-        Sichtbarkeit, die sich in Ergebnissen zeigt.
-      </h2>
-      <div class="grid gap-px bg-white/10 md:grid-cols-3">
-        {
-          outcomes.map((o) => (
-            <div class="bg-black p-8 md:p-12">
-              <p class="font-display text-2xl font-semibold text-brand-green md:text-3xl">{o}</p>
-            </div>
-          ))
-        }
-      </div>
-      <a href="/referenzen" class="mt-12 inline-block text-sm font-semibold text-brand-green hover:underline">
-        Referenzen ansehen
-      </a>
-    </div>
-  </section>
-
-  <!-- 5. Value-Content -->
-  <section class="border-b border-white/10 px-6 py-24 md:px-8 md:py-32">
-    <div class="mx-auto max-w-content">
-      <div class="grid items-center gap-14 md:grid-cols-2 md:gap-20">
-        <div>
-          <p class="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
-            Einblicke
+      <div class="grid gap-px bg-white/10 md:grid-cols-2">
+        <div class="bg-black p-8 md:p-10">
+          <p class="mb-4 font-display text-xl font-semibold">Kunden, die passen</p>
+          <p class="leading-relaxed text-white/55">
+            Menschen, die genau deine Lösung suchen, finden dich, vertrauen dir
+            und fragen an. Ohne Zufall und ohne Empfehlung als einzigen Weg.
           </p>
-          <h2 class="font-display mb-6 text-3xl font-semibold leading-tight md:text-4xl">
-            Bevor du vertraust, willst du sehen, wie gearbeitet wird.
-          </h2>
-          <p class="mb-8 text-lg leading-relaxed text-white/55">
-            Verständlich. Auf YouTube liegt offen, wie Sichtbarkeit entsteht,
-            wie gedacht und produziert wird. Schau rein und mach dir selbst ein
-            Bild.
-          </p>
-          <a
-            href={social.youtube}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-block text-sm font-semibold text-brand-green hover:underline"
-          >
-            Zum Kanal
-          </a>
         </div>
-        <YouTubeEmbed id="dQw4w9WgXcQ" title="Consistent Media auf YouTube" />
-      </div>
-    </div>
-  </section>
-
-  <!-- 6. Wo stehst du? -->
-  <section class="px-6 py-24 md:px-8 md:py-32">
-    <div class="mx-auto max-w-content">
-      <p class="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
-        Wo stehst du?
-      </p>
-      <h2 class="font-display mb-16 max-w-2xl text-3xl font-semibold leading-tight md:text-4xl">
-        Erkennst du dich in einer dieser Situationen?
-      </h2>
-      <div class="grid gap-px bg-white/10 md:grid-cols-3">
-        {
-          paths.map((p) => (
-            <a href={p.href} class="group flex flex-col gap-5 bg-black p-8 transition-colors hover:bg-white/[0.02] md:p-10">
-              <h3 class="font-display text-xl font-semibold leading-snug">{p.title}</h3>
-              <p class="leading-relaxed text-white/55">{p.text}</p>
-              <span class="mt-auto pt-2 text-sm font-semibold text-brand-green">Mehr erfahren</span>
-            </a>
-          ))
-        }
+        <div class="bg-black p-8 md:p-10">
+          <p class="mb-4 font-display text-xl font-semibold">
+            Mitarbeiter, die passen
+          </p>
+          <p class="leading-relaxed text-white/55">
+            Ein sichtbarer, klarer Auftritt zieht auch die Talente an, die zu
+            deinem Team und deiner Art zu arbeiten passen.
+          </p>
+        </div>
       </div>
     </div>
   </section>

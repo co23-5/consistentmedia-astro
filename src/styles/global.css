@@ -83,6 +83,12 @@
   background-size: 40px 40px;
 }
 
+/* Hero: wechselndes Wort (fade + entblurren) */
+.rotating-word {
+  display: inline-block;
+  transition: opacity 0.35s ease, filter 0.35s ease;
+}
+
 /* "sichtbar" wird sichtbar: fade + entblurren beim Einscrollen */
 .reveal-word {
   opacity: 0;

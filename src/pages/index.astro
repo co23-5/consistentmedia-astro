@@ -65,14 +65,10 @@ const outcomes = [
     <div class="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/40"></div>
 
     <div class="relative mx-auto w-full max-w-content">
-      <h1 class="font-display max-w-4xl text-5xl font-semibold leading-[1.05] tracking-tight md:text-6xl lg:text-7xl">
-        Nicht mehr Kunden.<br />Die <span class="text-brand-green">richtigen.</span>
+      <h1 class="font-display font-semibold leading-[1.05] tracking-tight text-[clamp(1.9rem,8vw,4.5rem)]">
+        <span id="rotating-word" class="rotating-word whitespace-nowrap text-brand-green">Expertise</span>
+        <br />sichtbar machen.
       </h1>
-      <p class="mt-10 max-w-xl text-lg leading-relaxed text-white/80 md:text-xl">
-        Dein Kalender ist voll, aber Anfrage ist nicht gleich Anfrage. Deine
-        Expertise muss sichtbar sein, damit genau die Menschen zu dir kommen,
-        für die du die beste Lösung bist.
-      </p>
       <div class="mt-14 flex flex-wrap items-center gap-4">
         <a
           href="/kontakt"
@@ -89,6 +85,31 @@ const outcomes = [
       </div>
     </div>
   </section>
+
+  <script>
+    const words = [
+      "Expertise",
+      "Einzigartigkeit",
+      "Unternehmenserfolge",
+      "Arbeitgebermarke",
+      "Angebote",
+    ];
+    const el = document.getElementById("rotating-word");
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (el && !reduce) {
+      let i = 0;
+      setInterval(() => {
+        el.style.opacity = "0";
+        el.style.filter = "blur(8px)";
+        setTimeout(() => {
+          i = (i + 1) % words.length;
+          el.textContent = words[i];
+          el.style.opacity = "1";
+          el.style.filter = "blur(0)";
+        }, 350);
+      }, 2600);
+    }
+  </script>
 
   <!-- 2. Manifest: das Herzstück, auf Notizblock-Raster -->
   <section class="paper-grid border-b border-white/10 px-6 py-28 md:px-8 md:py-40">

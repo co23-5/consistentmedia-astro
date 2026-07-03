@@ -274,7 +274,7 @@ const aufwandPasstNicht = 14;
         Das Ziel
       </p>
       <h2 class="font-display mb-16 max-w-3xl text-3xl font-semibold leading-tight md:text-4xl">
-        Online wahrgenommen werden und die richtigen Menschen anziehen.
+        Die richtigen Menschen anziehen.
       </h2>
       <div id="vorher-nachher" class="grid gap-px bg-white/10 md:grid-cols-2">
         <div class="bg-black p-8 md:p-10">
@@ -290,11 +290,11 @@ const aufwandPasstNicht = 14;
                 </svg>
                 Anfragen
               </span>
-              <span class="counter font-display text-4xl font-semibold tabular-nums md:text-5xl" data-target="42" data-duration="4200">0</span>
+              <span class="counter font-display text-4xl font-semibold tabular-nums md:text-5xl" data-target="42" data-duration="9000">0</span>
             </div>
             <div class="flex items-end justify-between gap-4">
               <span class="text-sm text-white/55">davon passend</span>
-              <span class="counter font-display text-4xl font-semibold tabular-nums text-brand-green md:text-5xl" data-target="3" data-duration="4200">0</span>
+              <span class="counter font-display text-4xl font-semibold tabular-nums text-brand-green md:text-5xl" data-target="3" data-duration="9000">0</span>
             </div>
           </div>
         </div>
@@ -312,11 +312,11 @@ const aufwandPasstNicht = 14;
                 </svg>
                 Anfragen
               </span>
-              <span class="counter font-display text-4xl font-semibold tabular-nums md:text-5xl" data-target="58" data-duration="3000">0</span>
+              <span class="counter font-display text-4xl font-semibold tabular-nums md:text-5xl" data-target="58" data-duration="6000">0</span>
             </div>
             <div class="flex items-end justify-between gap-4">
               <span class="text-sm text-white/55">davon passend</span>
-              <span class="counter font-display text-4xl font-semibold tabular-nums text-brand-green md:text-5xl" data-target="31" data-duration="1900">0</span>
+              <span class="counter font-display text-4xl font-semibold tabular-nums text-brand-green md:text-5xl" data-target="31" data-duration="4000">0</span>
             </div>
           </div>
         </div>
@@ -358,8 +358,7 @@ const aufwandPasstNicht = 14;
           const start = performance.now();
           const step = (now: number) => {
             const p = Math.min((now - start) / dur, 1);
-            const eased = 1 - Math.pow(1 - p, 3);
-            el.textContent = String(Math.round(eased * target));
+            el.textContent = String(Math.round(p * target));
             if (p < 1) requestAnimationFrame(step);
           };
           requestAnimationFrame(step);
@@ -374,7 +373,7 @@ const aufwandPasstNicht = 14;
               setInterval(() => {
                 counters.forEach((el) => (el.textContent = "0"));
                 run();
-              }, 6000);
+              }, 11000);
               io.disconnect();
             }
           });

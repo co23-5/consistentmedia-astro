@@ -110,7 +110,7 @@ const outcomes = [
           el.textContent = word.slice(0, charIndex);
           if (charIndex === word.length) {
             deleting = true;
-            setTimeout(tick, 1600); // Pause beim vollen Wort
+            setTimeout(tick, 1200); // Pause beim vollen Wort
             return;
           }
           setTimeout(tick, 85); // Tipptempo

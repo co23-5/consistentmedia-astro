@@ -1,23 +1,238 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import YouTubeEmbed from "../components/YouTubeEmbed.astro";
+import CTA from "../components/CTA.astro";
+import { social } from "../lib/social";
+
+const paths = [
+  {
+    title: "Ich bin Experte, aber online unsichtbar",
+    text: "Du hast die Kompetenz, aber keinen Kanal und keine Reichweite. Wir zeigen dir, wie Sichtbarkeit von Grund auf entsteht.",
+    href: "/methode",
+  },
+  {
+    title: "Ich produziere schon, aber es kommen keine Anfragen",
+    text: "Content ohne System verpufft. Wir machen aus einzelnen Videos einen Weg, der zu echten Anfragen führt.",
+    href: "/methode",
+  },
+  {
+    title: "Ich will meine Sichtbarkeit ausbauen",
+    text: "Es läuft, aber du willst mehr erreichen oder es abgeben. Wir übernehmen Strategie und Produktion.",
+    href: "/leistungen",
+  },
+];
+
+const steps = [
+  { n: "01", title: "Strategie und Kanalaufbau", text: "Positionierung, Themen, Format. Das Fundament, auf dem alles steht." },
+  { n: "02", title: "Content-Produktion", text: "Videos, die deine Expertise klar zeigen. Konstant, in hoher Qualität." },
+  { n: "03", title: "Distribution und Ads", text: "Damit die richtigen Menschen deine Inhalte sehen, nicht nur der Zufall." },
+  { n: "04", title: "Anfragen und Conversion", text: "Aus Sichtbarkeit werden Vertrauen und am Ende konkrete Anfragen." },
+];
+
+const outcomes = [
+  "Vorqualifizierte Anfragen",
+  "Konstante Sichtbarkeit",
+  "Weniger Fragen, mehr System",
+];
 ---
 
 <Layout title="Consistent Media">
-  <section class="mx-auto max-w-content px-6 py-24">
-    <p class="mb-6 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
-      Astro-Relaunch
-    </p>
-    <h1 class="font-display text-5xl font-semibold leading-[1.05] tracking-tight md:text-7xl">
-      Expertise <span class="text-brand-green">sichtbar</span> machen.
-    </h1>
-    <p class="mt-8 max-w-xl text-lg leading-relaxed text-white/60 md:text-xl">
-      Fundament und Bausteine stehen. Ab hier bauen wir die Startseite nach der
-      Journey auf.
-    </p>
-
-    <div class="mt-16 max-w-2xl">
-      <YouTubeEmbed id="dQw4w9WgXcQ" title="Testvideo Consistent Media" />
+  <!-- 1. Hero -->
+  <section class="border-b border-white/10 px-6 py-28 md:py-36">
+    <div class="mx-auto max-w-content">
+      <h1 class="font-display max-w-4xl text-5xl font-semibold leading-[1.05] tracking-tight md:text-7xl lg:text-8xl">
+        Expertise <span class="text-brand-green">sichtbar</span> machen.
+      </h1>
+      <p class="mt-8 max-w-xl text-lg leading-relaxed text-white/70 md:text-xl">
+        Du bist in deinem Fach längst führend. Online merkt das nur kaum jemand.
+        Wir sorgen dafür, dass die richtigen Menschen dich finden, dir vertrauen
+        und anfragen.
+      </p>
+      <div class="mt-12 flex flex-wrap items-center gap-4">
+        <a
+          href="/kontakt"
+          class="border border-brand-green px-8 py-4 text-sm font-semibold text-brand-green transition-colors hover:bg-brand-green hover:text-black"
+        >
+          Zusammenarbeit anfragen
+        </a>
+        <a
+          href="/methode"
+          class="border border-white/30 px-8 py-4 text-sm font-semibold text-white transition-colors hover:border-white/60"
+        >
+          So funktioniert es
+        </a>
+      </div>
     </div>
   </section>
+
+  <!-- 2. Selbst-Einordnung -->
+  <section class="border-b border-white/10 px-6 py-20">
+    <div class="mx-auto max-w-content">
+      <p class="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
+        Wo stehst du?
+      </p>
+      <h2 class="font-display mb-12 max-w-2xl text-3xl font-semibold leading-tight md:text-4xl">
+        Wie können wir dir helfen?
+      </h2>
+      <div class="grid gap-px bg-white/10 md:grid-cols-3">
+        {
+          paths.map((p) => (
+            <a href={p.href} class="group flex flex-col gap-4 bg-black p-8 transition-colors hover:bg-white/[0.02]">
+              <h3 class="font-display text-xl font-semibold leading-snug">{p.title}</h3>
+              <p class="text-sm leading-relaxed text-white/55">{p.text}</p>
+              <span class="mt-2 text-sm font-semibold text-brand-green">
+                Mehr erfahren
+              </span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Haltung -->
+  <section class="border-b border-white/10 px-6 py-20">
+    <div class="mx-auto max-w-content">
+      <div class="grid gap-16 md:grid-cols-2 md:gap-24">
+        <div>
+          <p class="mb-6 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
+            Unsere Haltung
+          </p>
+          <h2 class="font-display text-3xl font-semibold leading-tight md:text-4xl">
+            In deutschen Unternehmen steckt mehr Expertise als sichtbar ist.
+          </h2>
+        </div>
+        <div class="space-y-6 leading-relaxed text-white/60">
+          <p>
+            Das Problem ist selten die Kompetenz. Es ist die Sichtbarkeit. Wer
+            heute nach einem Anbieter sucht, entscheidet sich für den, dem er
+            vertraut.
+          </p>
+          <p>
+            Und Vertrauen entsteht dadurch, dass Expertise klar und konsistent
+            gezeigt wird. Nicht durch Zufall, sondern durch ein System.
+          </p>
+          <p>
+            Wir arbeiten mit Menschen, die etwas zu sagen haben, und sorgen
+            dafür, dass die richtigen Menschen es hören und verstehen, warum sie
+            bei niemandem besser aufgehoben sind als bei dir.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Der Weg / Methode-Teaser -->
+  <section class="border-b border-white/10 px-6 py-20">
+    <div class="mx-auto max-w-content">
+      <p class="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
+        Der Weg
+      </p>
+      <h2 class="font-display mb-6 max-w-2xl text-3xl font-semibold leading-tight md:text-4xl">
+        So entsteht Sichtbarkeit, Schritt für Schritt.
+      </h2>
+      <p class="mb-12 max-w-xl text-lg leading-relaxed text-white/55">
+        Sichtbarkeit ist kein Zufall, sondern ein System. Wir zeigen dir den
+        kompletten Weg offen, ehrlich genug, dass du ihn selbst gehen könntest.
+      </p>
+      <div class="grid gap-px bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          steps.map((s) => (
+            <div class="flex flex-col gap-3 bg-black p-6">
+              <span class="font-display text-2xl font-semibold text-brand-green">{s.n}</span>
+              <h3 class="font-display text-base font-semibold leading-snug">{s.title}</h3>
+              <p class="text-sm leading-relaxed text-white/55">{s.text}</p>
+            </div>
+          ))
+        }
+      </div>
+      <a href="/methode" class="mt-10 inline-block text-sm font-semibold text-brand-green hover:underline">
+        Die ganze Methode ansehen
+      </a>
+    </div>
+  </section>
+
+  <!-- 5. Proof -->
+  <section class="border-b border-white/10 px-6 py-20">
+    <div class="mx-auto max-w-content">
+      <p class="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
+        Was dabei entsteht
+      </p>
+      <h2 class="font-display mb-12 max-w-2xl text-3xl font-semibold leading-tight md:text-4xl">
+        Sichtbarkeit, die sich in Ergebnissen zeigt.
+      </h2>
+      <div class="grid gap-px bg-white/10 md:grid-cols-3">
+        {
+          outcomes.map((o) => (
+            <div class="bg-black p-8">
+              <p class="font-display text-2xl font-semibold text-brand-green md:text-3xl">{o}</p>
+            </div>
+          ))
+        }
+      </div>
+      <a href="/referenzen" class="mt-10 inline-block text-sm font-semibold text-brand-green hover:underline">
+        Referenzen ansehen
+      </a>
+    </div>
+  </section>
+
+  <!-- 6. Value-Content -->
+  <section class="border-b border-white/10 px-6 py-20">
+    <div class="mx-auto max-w-content">
+      <div class="grid items-center gap-12 md:grid-cols-2 md:gap-16">
+        <div>
+          <p class="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
+            Aus unseren Videos
+          </p>
+          <h2 class="font-display mb-6 text-3xl font-semibold leading-tight md:text-4xl">
+            Wir machen selbst, was wir für dich tun.
+          </h2>
+          <p class="mb-6 text-lg leading-relaxed text-white/55">
+            Auf unserem YouTube-Kanal zeigen wir offen, wie wir denken,
+            produzieren und Sichtbarkeit aufbauen. Schau vorbei und mach dir
+            selbst ein Bild.
+          </p>
+          <a
+            href={social.youtube}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-block text-sm font-semibold text-brand-green hover:underline"
+          >
+            Zum Kanal
+          </a>
+        </div>
+        <YouTubeEmbed id="dQw4w9WgXcQ" title="Consistent Media auf YouTube" />
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. So arbeiten wir zusammen -->
+  <section class="border-b border-white/10 px-6 py-20">
+    <div class="mx-auto max-w-content">
+      <div class="grid gap-16 md:grid-cols-2 md:gap-24">
+        <div>
+          <p class="mb-6 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
+            Zusammenarbeit
+          </p>
+          <h2 class="font-display text-3xl font-semibold leading-tight md:text-4xl">
+            Und wenn du es mit Profis machen willst.
+          </h2>
+        </div>
+        <div class="space-y-6 leading-relaxed text-white/60">
+          <p>
+            Alles, was du brauchst, um es selbst umzusetzen, zeigen wir offen.
+            Wenn du es lieber mit einem Team machst, das genau das täglich tut,
+            übernehmen wir Strategie, Produktion und Distribution.
+          </p>
+          <p>
+            Wir nehmen bewusst nur eine begrenzte Anzahl an Projekten an, um
+            jedem die volle Aufmerksamkeit zu geben.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. CTA -->
+  <CTA />
 </Layout>

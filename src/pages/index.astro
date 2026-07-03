@@ -35,13 +35,10 @@ const outcomes = [
   "Weniger Fragen, mehr System",
 ];
 
-// Aufwand-Vergleich: gleicher Umsatz, sehr unterschiedlicher Aufwand
-const kostenBalken = [
-  { label: "Aufwand", passt: "30%", passtNicht: "92%" },
-  { label: "Mitarbeiter", passt: "22%", passtNicht: "78%" },
-  { label: "Arbeitsmittel", passt: "35%", passtNicht: "88%" },
-  { label: "Zeit", passt: "25%", passtNicht: "96%" },
-];
+// Aufwand-Vergleich: gleicher Umsatz, sehr unterschiedlicher Aufwand.
+// Kreise = Aufwand (Mitarbeiter, Arbeitsmittel, Zeit ...), Rechteck = Umsatz.
+const aufwandPasst = 4;
+const aufwandPasstNicht = 14;
 ---
 
 <Layout
@@ -193,51 +190,51 @@ const kostenBalken = [
       </p>
 
       <div id="cost-compare" class="grid gap-px bg-white/10 md:grid-cols-2">
-        <div class="bg-black p-8 md:p-10">
-          <p class="mb-8 text-xs font-semibold uppercase tracking-widest text-white/50">
+        <div class="flex flex-col bg-black p-8 md:p-10">
+          <p class="text-xs font-semibold uppercase tracking-widest text-white/50">
             Der passende Auftrag
           </p>
-          <div class="space-y-5">
+          <p class="mb-8 mt-2 text-sm text-white/40">
+            Aufwand, Mitarbeiter, Arbeitsmittel, Zeit
+          </p>
+          <div class="mb-12 flex max-w-52 flex-wrap gap-3">
             {
-              kostenBalken.map((b) => (
-                <div class="flex items-center gap-4">
-                  <span class="w-24 shrink-0 text-sm text-white/55 md:w-28">{b.label}</span>
-                  <div class="h-2.5 flex-1 bg-white/[0.06]">
-                    <div class="bar-fill h-full bg-white/45" data-w={b.passt} />
-                  </div>
-                </div>
+              Array.from({ length: aufwandPasst }).map(() => (
+                <span class="effort-dot h-5 w-5 rounded-full bg-white/40" />
               ))
             }
           </div>
-          <div class="mt-10 flex items-center gap-4">
-            <span class="flex h-16 w-16 items-center justify-center rounded-full bg-brand-green text-xs font-semibold text-black">
+          <div class="mt-auto border border-brand-green/40 bg-brand-green/10 px-6 py-5">
+            <p class="font-display text-3xl font-semibold text-brand-green md:text-4xl">
+              1.000.000 €
+            </p>
+            <p class="mt-1 text-xs font-semibold uppercase tracking-widest text-white/50">
               Umsatz
-            </span>
-            <span class="text-sm text-white/55">wenig Aufwand</span>
+            </p>
           </div>
         </div>
 
-        <div class="bg-black p-8 md:p-10">
-          <p class="mb-8 text-xs font-semibold uppercase tracking-widest text-white/50">
+        <div class="flex flex-col bg-black p-8 md:p-10">
+          <p class="text-xs font-semibold uppercase tracking-widest text-white/50">
             Der unpassende Auftrag
           </p>
-          <div class="space-y-5">
+          <p class="mb-8 mt-2 text-sm text-white/40">
+            Aufwand, Mitarbeiter, Arbeitsmittel, Zeit
+          </p>
+          <div class="mb-12 flex max-w-52 flex-wrap gap-3">
             {
-              kostenBalken.map((b) => (
-                <div class="flex items-center gap-4">
-                  <span class="w-24 shrink-0 text-sm text-white/55 md:w-28">{b.label}</span>
-                  <div class="h-2.5 flex-1 bg-white/[0.06]">
-                    <div class="bar-fill h-full bg-white/45" data-w={b.passtNicht} />
-                  </div>
-                </div>
+              Array.from({ length: aufwandPasstNicht }).map(() => (
+                <span class="effort-dot h-5 w-5 rounded-full bg-white/40" />
               ))
             }
           </div>
-          <div class="mt-10 flex items-center gap-4">
-            <span class="flex h-16 w-16 items-center justify-center rounded-full bg-brand-green text-xs font-semibold text-black">
+          <div class="mt-auto border border-brand-green/40 bg-brand-green/10 px-6 py-5">
+            <p class="font-display text-3xl font-semibold text-brand-green md:text-4xl">
+              1.000.000 €
+            </p>
+            <p class="mt-1 text-xs font-semibold uppercase tracking-widest text-white/50">
               Umsatz
-            </span>
-            <span class="text-sm text-white/55">ein Vielfaches an Aufwand</span>
+            </p>
           </div>
         </div>
       </div>
@@ -285,7 +282,7 @@ const kostenBalken = [
       setTimeout(tick, 1800);
     })();
 
-    // Aufwand-Balken wachsen beim Einscrollen
+    // Aufwand-Kreise poppen beim Einscrollen rein
     (() => {
       const cmp = document.getElementById("cost-compare");
       if (!cmp) return;
@@ -293,13 +290,9 @@ const kostenBalken = [
         (entries) => {
           entries.forEach((e) => {
             if (e.isIntersecting) {
-              cmp
-                .querySelectorAll<HTMLElement>(".bar-fill")
-                .forEach((f, i) => {
-                  setTimeout(() => {
-                    f.style.width = f.dataset.w ?? "0";
-                  }, i * 80);
-                });
+              cmp.querySelectorAll(".effort-dot").forEach((d, i) => {
+                setTimeout(() => d.classList.add("is-visible"), i * 55);
+              });
               io.disconnect();
             }
           });

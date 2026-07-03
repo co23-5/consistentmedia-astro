@@ -66,7 +66,10 @@ const outcomes = [
 
     <div class="relative mx-auto w-full max-w-content">
       <h1 class="font-display font-semibold leading-[1.05] tracking-tight text-[clamp(1.9rem,8vw,4.5rem)]">
-        <span id="rotating-word" class="rotating-word whitespace-nowrap text-brand-green">Expertise</span>
+        <span class="whitespace-nowrap"><span id="rotating-word" class="rotating-word text-brand-green"
+            >Expertise</span
+          ><span class="caret text-brand-green" aria-hidden="true">|</span></span
+        >
         <br />sichtbar machen.
       </h1>
       <div class="mt-14 flex flex-wrap items-center gap-4">
@@ -97,17 +100,33 @@ const outcomes = [
     const el = document.getElementById("rotating-word");
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (el && !reduce) {
-      let i = 0;
-      setInterval(() => {
-        el.style.opacity = "0";
-        el.style.filter = "blur(8px)";
-        setTimeout(() => {
-          i = (i + 1) % words.length;
-          el.textContent = words[i];
-          el.style.opacity = "1";
-          el.style.filter = "blur(0)";
-        }, 350);
-      }, 2600);
+      let wordIndex = 0;
+      let charIndex = words[0].length; // startet mit voll gezeigtem "Expertise"
+      let deleting = true;
+      const tick = () => {
+        const word = words[wordIndex];
+        if (!deleting) {
+          charIndex++;
+          el.textContent = word.slice(0, charIndex);
+          if (charIndex === word.length) {
+            deleting = true;
+            setTimeout(tick, 1600); // Pause beim vollen Wort
+            return;
+          }
+          setTimeout(tick, 85); // Tipptempo
+        } else {
+          charIndex--;
+          el.textContent = word.slice(0, charIndex);
+          if (charIndex === 0) {
+            deleting = false;
+            wordIndex = (wordIndex + 1) % words.length;
+            setTimeout(tick, 350); // Pause vor dem nächsten Wort
+            return;
+          }
+          setTimeout(tick, 40); // Löschtempo
+        }
+      };
+      setTimeout(tick, 1800);
     }
   </script>
 

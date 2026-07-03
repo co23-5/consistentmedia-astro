@@ -274,29 +274,116 @@ const aufwandPasstNicht = 14;
         Das Ziel
       </p>
       <h2 class="font-display mb-16 max-w-3xl text-3xl font-semibold leading-tight md:text-4xl">
-        Ein klarer Online-Auftritt, der deine Expertise sichtbar macht und die
-        richtigen Menschen anzieht.
+        Online wahrgenommen werden und die richtigen Menschen anziehen.
       </h2>
-      <div class="grid gap-px bg-white/10 md:grid-cols-2">
+      <div id="vorher-nachher" class="grid gap-px bg-white/10 md:grid-cols-2">
         <div class="bg-black p-8 md:p-10">
-          <p class="mb-4 font-display text-xl font-semibold">Kunden, die passen</p>
-          <p class="leading-relaxed text-white/55">
-            Menschen, die genau deine Lösung suchen, finden dich, vertrauen dir
-            und fragen an. Ohne Zufall und ohne Empfehlung als einzigen Weg.
+          <p class="mb-10 text-xs font-semibold uppercase tracking-widest text-white/40">
+            Vorher
           </p>
+          <div class="space-y-8">
+            <div class="flex items-end justify-between gap-4">
+              <span class="flex items-center gap-3 text-sm text-white/55">
+                <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <rect x="3" y="5" width="18" height="14" rx="2" />
+                  <path d="M3 7.5 12 13l9-5.5" />
+                </svg>
+                Anfragen
+              </span>
+              <span class="counter font-display text-4xl font-semibold tabular-nums md:text-5xl" data-target="42" data-duration="4200">0</span>
+            </div>
+            <div class="flex items-end justify-between gap-4">
+              <span class="text-sm text-white/55">davon passend</span>
+              <span class="counter font-display text-4xl font-semibold tabular-nums text-brand-green md:text-5xl" data-target="3" data-duration="4200">0</span>
+            </div>
+          </div>
         </div>
+
         <div class="bg-black p-8 md:p-10">
-          <p class="mb-4 font-display text-xl font-semibold">
-            Mitarbeiter, die passen
+          <p class="mb-10 text-xs font-semibold uppercase tracking-widest text-brand-green">
+            Nachher
           </p>
-          <p class="leading-relaxed text-white/55">
-            Ein sichtbarer, klarer Auftritt zieht auch die Talente an, die zu
-            deinem Team und deiner Art zu arbeiten passen.
-          </p>
+          <div class="space-y-8">
+            <div class="flex items-end justify-between gap-4">
+              <span class="flex items-center gap-3 text-sm text-white/55">
+                <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <rect x="3" y="5" width="18" height="14" rx="2" />
+                  <path d="M3 7.5 12 13l9-5.5" />
+                </svg>
+                Anfragen
+              </span>
+              <span class="counter font-display text-4xl font-semibold tabular-nums md:text-5xl" data-target="58" data-duration="3000">0</span>
+            </div>
+            <div class="flex items-end justify-between gap-4">
+              <span class="text-sm text-white/55">davon passend</span>
+              <span class="counter font-display text-4xl font-semibold tabular-nums text-brand-green md:text-5xl" data-target="31" data-duration="1900">0</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
+
+  <script>
+    // Vorher/Nachher: Zahlen zaehlen hoch (Anfragen + davon passend)
+    (() => {
+      const cont = document.getElementById("vorher-nachher");
+      if (!cont) return;
+      const counters = cont.querySelectorAll<HTMLElement>(".counter");
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      const setFinal = () => {
+        counters.forEach((el) => {
+          el.textContent = String(el.dataset.target ?? "0");
+        });
+      };
+
+      if (reduce) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              setFinal();
+              io.disconnect();
+            }
+          });
+        });
+        io.observe(cont);
+        return;
+      }
+
+      const run = () => {
+        counters.forEach((el) => {
+          const target = Number(el.dataset.target ?? 0);
+          const dur = Number(el.dataset.duration ?? 2000);
+          const start = performance.now();
+          const step = (now: number) => {
+            const p = Math.min((now - start) / dur, 1);
+            const eased = 1 - Math.pow(1 - p, 3);
+            el.textContent = String(Math.round(eased * target));
+            if (p < 1) requestAnimationFrame(step);
+          };
+          requestAnimationFrame(step);
+        });
+      };
+
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              run();
+              setInterval(() => {
+                counters.forEach((el) => (el.textContent = "0"));
+                run();
+              }, 6000);
+              io.disconnect();
+            }
+          });
+        },
+        { threshold: 0.4 },
+      );
+      io.observe(cont);
+    })();
+  </script>
 
   <!-- 7. CTA -->
   <CTA title="Bereit, deine Expertise sichtbar zu machen?" text="" />

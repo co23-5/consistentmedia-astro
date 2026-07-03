@@ -40,28 +40,52 @@ const outcomes = [
   title="Consistent Media"
   description="Die Besten sollten gewinnen, nicht die Lautesten. Wir machen echte Expertise sichtbar, über YouTube, Content und Ads."
 >
-  <!-- 1. Hero: das Warum -->
-  <section class="border-b border-white/10 px-6 pb-32 pt-24 md:px-8 md:pb-44 md:pt-32">
-    <div class="mx-auto max-w-content">
+  <!-- 1. Hero: das Warum, mit Studio-Video im Hintergrund -->
+  <section class="relative -mt-[73px] flex min-h-[100svh] flex-col justify-center overflow-hidden border-b border-white/10 px-6 pb-24 pt-[73px] md:px-8">
+    <video
+      autoplay
+      muted
+      loop
+      playsinline
+      poster="/consistent-media-studio-header-fallback.jpg"
+      class="absolute inset-0 hidden h-full w-full object-cover md:block"
+    >
+      <source src="/consistent-media-studio-header.mp4" type="video/mp4" />
+    </video>
+    <video
+      autoplay
+      muted
+      loop
+      playsinline
+      poster="/consistent-media-studio-header-fallback.jpg"
+      class="absolute inset-0 h-full w-full object-cover md:hidden"
+    >
+      <source src="/consistent-media-studio-header-hochkant.mp4" type="video/mp4" />
+    </video>
+    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/40"></div>
+
+    <div class="relative mx-auto w-full max-w-content">
       <h1 class="font-display max-w-4xl text-5xl font-semibold leading-[1.05] tracking-tight md:text-6xl lg:text-7xl">
-        Die Besten sollten gewinnen.<br class="hidden sm:block" />
+        Die Besten sollten gewinnen.{" "}
+        <br class="hidden sm:block" />
         Nicht die <span class="text-brand-green">Lautesten.</span>
       </h1>
-      <p class="mt-10 max-w-xl text-lg leading-relaxed text-white/70 md:text-xl">
+      <p class="mt-10 max-w-xl text-lg leading-relaxed text-white/80 md:text-xl">
         Zu viele Experten bleiben unsichtbar, während lautere, aber schwächere
         Anbieter die Kunden bekommen. Das ist nicht nur unfair, es ist ein
-        Verlust für alle, die ihre Hilfe gebraucht hätten. Genau das ändern wir.
+        Verlust für alle, die ihre Hilfe gebraucht hätten. Genau das wollen wir
+        ändern.
       </p>
       <div class="mt-14 flex flex-wrap items-center gap-4">
         <a
           href="/kontakt"
-          class="border border-brand-green px-8 py-4 text-sm font-semibold text-brand-green transition-colors hover:bg-brand-green hover:text-black"
+          class="border border-brand-green bg-brand-green px-8 py-4 text-sm font-semibold text-black transition-opacity hover:opacity-90"
         >
           Zusammenarbeit anfragen
         </a>
         <a
           href="/methode"
-          class="border border-white/30 px-8 py-4 text-sm font-semibold text-white transition-colors hover:border-white/60"
+          class="border border-white/40 px-8 py-4 text-sm font-semibold text-white backdrop-blur-sm transition-colors hover:border-white/70"
         >
           So funktioniert es
         </a>
@@ -69,37 +93,48 @@ const outcomes = [
     </div>
   </section>
 
-  <!-- 2. Manifest: das Herzstück -->
-  <section class="border-b border-white/10 px-6 py-28 md:px-8 md:py-40">
+  <!-- 2. Manifest: das Herzstück, auf Notizblock-Raster -->
+  <section class="paper-grid border-b border-white/10 px-6 py-28 md:px-8 md:py-40">
     <div class="mx-auto max-w-3xl">
       <p class="mb-12 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
         Warum wir das tun
       </p>
       <div class="space-y-8 text-xl leading-relaxed text-white/70 md:text-2xl md:leading-relaxed">
         <p>
-          Wir glauben, dass der Beste gewinnen sollte. Nicht der mit dem größten
-          Werbebudget oder der lautesten Stimme.
-        </p>
-        <p>
-          Aber so läuft es selten. Jeden Tag entscheiden sich Menschen für einen
-          Anbieter, der schlechter ist, nur weil er sichtbarer war. Und die
-          wahren Experten, die es besser könnten, bleiben im Verborgenen.
+          Jeden Tag entscheiden sich Menschen für einen Anbieter, der schlechter
+          ist, nur weil er sichtbarer war. Und die wahren Experten, die es besser
+          könnten, bleiben im Verborgenen.
         </p>
         <p>
           Das ist ein doppelter Verlust. Für den Experten, dessen Können niemand
           sieht. Und für alle, die genau diese Hilfe gebraucht hätten und sie
           nie gefunden haben.
         </p>
-        <p>
-          Deshalb gibt es uns. Wir machen echte Expertise sichtbar, damit
-          Vertrauen dorthin fließt, wo es hingehört.
-        </p>
+        <p>Deshalb ist unsere Mission:</p>
       </div>
-      <p class="font-display mt-16 text-4xl font-semibold leading-[1.1] md:text-6xl">
-        Nicht zum Lautesten.<br />Zum <span class="text-brand-green">Besten.</span>
+      <p class="font-display mt-10 text-4xl font-semibold leading-[1.1] md:text-6xl">
+        Expertise <span class="reveal-word text-brand-green">sichtbar</span> machen.
       </p>
     </div>
   </section>
+
+  <script>
+    const word = document.querySelector(".reveal-word");
+    if (word) {
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              word.classList.add("is-visible");
+              io.disconnect();
+            }
+          });
+        },
+        { threshold: 0.6 },
+      );
+      io.observe(word);
+    }
+  </script>
 
   <!-- 3. Der Weg / Methode: das Wie -->
   <section class="border-b border-white/10 px-6 py-24 md:px-8 md:py-32">

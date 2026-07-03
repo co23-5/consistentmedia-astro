@@ -75,6 +75,36 @@
   }
 }
 
+/* Notizblock-Raster (kariert), dezent, fuers Manifest */
+.paper-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+/* "sichtbar" wird sichtbar: fade + entblurren beim Einscrollen */
+.reveal-word {
+  opacity: 0;
+  filter: blur(12px);
+  transition: opacity 0.9s ease, filter 0.9s ease, transform 0.9s ease;
+  transform: translateY(0.1em);
+  display: inline-block;
+}
+.reveal-word.is-visible {
+  opacity: 1;
+  filter: blur(0);
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal-word {
+    opacity: 1;
+    filter: none;
+    transform: none;
+    transition: none;
+  }
+}
+
 /* Cookie-Consent (vanilla-cookieconsent) ans Brand-Design angepasst */
 #cc-main {
   --cc-font-family: "Montserrat", sans-serif;

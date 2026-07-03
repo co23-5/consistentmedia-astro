@@ -36,17 +36,21 @@ const outcomes = [
 ];
 ---
 
-<Layout title="Consistent Media">
-  <!-- 1. Hero -->
+<Layout
+  title="Consistent Media"
+  description="Die Besten sollten gewinnen, nicht die Lautesten. Wir machen echte Expertise sichtbar, über YouTube, Content und Ads."
+>
+  <!-- 1. Hero: das Warum -->
   <section class="border-b border-white/10 px-6 pb-32 pt-24 md:px-8 md:pb-44 md:pt-32">
     <div class="mx-auto max-w-content">
-      <h1 class="font-display max-w-4xl text-5xl font-semibold leading-[1.05] tracking-tight md:text-7xl lg:text-8xl">
-        Expertise <span class="text-brand-green">sichtbar</span> machen.
+      <h1 class="font-display max-w-4xl text-5xl font-semibold leading-[1.05] tracking-tight md:text-6xl lg:text-7xl">
+        Die Besten sollten gewinnen.<br class="hidden sm:block" />
+        Nicht die <span class="text-brand-green">Lautesten.</span>
       </h1>
       <p class="mt-10 max-w-xl text-lg leading-relaxed text-white/70 md:text-xl">
-        Du bist in deinem Fach längst führend. Online merkt das nur kaum jemand.
-        Wir sorgen dafür, dass die richtigen Menschen dich finden, dir vertrauen
-        und anfragen.
+        Zu viele Experten bleiben unsichtbar, während lautere, aber schwächere
+        Anbieter die Kunden bekommen. Das ist nicht nur unfair, es ist ein
+        Verlust für alle, die ihre Hilfe gebraucht hätten. Genau das ändern wir.
       </p>
       <div class="mt-14 flex flex-wrap items-center gap-4">
         <a
@@ -65,71 +69,46 @@ const outcomes = [
     </div>
   </section>
 
-  <!-- 2. Selbst-Einordnung -->
-  <section class="border-b border-white/10 px-6 py-24 md:px-8 md:py-32">
-    <div class="mx-auto max-w-content">
-      <p class="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
-        Wo stehst du?
+  <!-- 2. Manifest: das Herzstück -->
+  <section class="border-b border-white/10 px-6 py-28 md:px-8 md:py-40">
+    <div class="mx-auto max-w-3xl">
+      <p class="mb-12 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
+        Warum wir das tun
       </p>
-      <h2 class="font-display mb-16 max-w-2xl text-3xl font-semibold leading-tight md:text-4xl">
-        Wie können wir dir helfen?
-      </h2>
-      <div class="grid gap-px bg-white/10 md:grid-cols-3">
-        {
-          paths.map((p) => (
-            <a href={p.href} class="group flex flex-col gap-5 bg-black p-8 transition-colors hover:bg-white/[0.02] md:p-10">
-              <h3 class="font-display text-xl font-semibold leading-snug">{p.title}</h3>
-              <p class="leading-relaxed text-white/55">{p.text}</p>
-              <span class="mt-auto pt-2 text-sm font-semibold text-brand-green">
-                Mehr erfahren
-              </span>
-            </a>
-          ))
-        }
+      <div class="space-y-8 text-xl leading-relaxed text-white/70 md:text-2xl md:leading-relaxed">
+        <p>
+          Wir glauben, dass der Beste gewinnen sollte. Nicht der mit dem größten
+          Werbebudget oder der lautesten Stimme.
+        </p>
+        <p>
+          Aber so läuft es selten. Jeden Tag entscheiden sich Menschen für einen
+          Anbieter, der schlechter ist, nur weil er sichtbarer war. Und die
+          wahren Experten, die es besser könnten, bleiben im Verborgenen.
+        </p>
+        <p>
+          Das ist ein doppelter Verlust. Für den Experten, dessen Können niemand
+          sieht. Und für alle, die genau diese Hilfe gebraucht hätten und sie
+          nie gefunden haben.
+        </p>
+        <p>
+          Deshalb gibt es uns. Wir machen echte Expertise sichtbar, damit
+          Vertrauen dorthin fließt, wo es hingehört.
+        </p>
       </div>
+      <p class="font-display mt-16 text-4xl font-semibold leading-[1.1] md:text-6xl">
+        Nicht zum Lautesten.<br />Zum <span class="text-brand-green">Besten.</span>
+      </p>
     </div>
   </section>
 
-  <!-- 3. Haltung -->
-  <section class="border-b border-white/10 px-6 py-24 md:px-8 md:py-32">
-    <div class="mx-auto max-w-content">
-      <div class="grid gap-14 md:grid-cols-2 md:gap-28">
-        <div>
-          <p class="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
-            Unsere Haltung
-          </p>
-          <h2 class="font-display text-3xl font-semibold leading-tight md:text-4xl">
-            In deutschen Unternehmen steckt mehr Expertise als sichtbar ist.
-          </h2>
-        </div>
-        <div class="space-y-6 text-lg leading-relaxed text-white/60">
-          <p>
-            Das Problem ist selten die Kompetenz. Es ist die Sichtbarkeit. Wer
-            heute nach einem Anbieter sucht, entscheidet sich für den, dem er
-            vertraut.
-          </p>
-          <p>
-            Und Vertrauen entsteht dadurch, dass Expertise klar und konsistent
-            gezeigt wird. Nicht durch Zufall, sondern durch ein System.
-          </p>
-          <p>
-            Wir arbeiten mit Menschen, die etwas zu sagen haben, und sorgen
-            dafür, dass die richtigen Menschen es hören und verstehen, warum sie
-            bei niemandem besser aufgehoben sind als bei dir.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 4. Der Weg / Methode-Teaser -->
+  <!-- 3. Der Weg / Methode: das Wie -->
   <section class="border-b border-white/10 px-6 py-24 md:px-8 md:py-32">
     <div class="mx-auto max-w-content">
       <p class="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
-        Der Weg
+        Wie wir das tun
       </p>
       <h2 class="font-display mb-6 max-w-2xl text-3xl font-semibold leading-tight md:text-4xl">
-        So entsteht Sichtbarkeit, Schritt für Schritt.
+        So wird aus Können Sichtbarkeit.
       </h2>
       <p class="mb-16 max-w-xl text-lg leading-relaxed text-white/55">
         Sichtbarkeit ist kein Zufall, sondern ein System. Wir zeigen dir den
@@ -152,7 +131,7 @@ const outcomes = [
     </div>
   </section>
 
-  <!-- 5. Proof -->
+  <!-- 4. Proof -->
   <section class="border-b border-white/10 px-6 py-24 md:px-8 md:py-32">
     <div class="mx-auto max-w-content">
       <p class="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
@@ -176,7 +155,7 @@ const outcomes = [
     </div>
   </section>
 
-  <!-- 6. Value-Content -->
+  <!-- 5. Value-Content -->
   <section class="border-b border-white/10 px-6 py-24 md:px-8 md:py-32">
     <div class="mx-auto max-w-content">
       <div class="grid items-center gap-14 md:grid-cols-2 md:gap-20">
@@ -185,7 +164,7 @@ const outcomes = [
             Aus unseren Videos
           </p>
           <h2 class="font-display mb-6 text-3xl font-semibold leading-tight md:text-4xl">
-            Wir machen selbst, was wir für dich tun.
+            Wir predigen nichts, was wir nicht selbst tun.
           </h2>
           <p class="mb-8 text-lg leading-relaxed text-white/55">
             Auf unserem YouTube-Kanal zeigen wir offen, wie wir denken,
@@ -206,33 +185,32 @@ const outcomes = [
     </div>
   </section>
 
-  <!-- 7. So arbeiten wir zusammen -->
+  <!-- 6. Wo stehst du? -->
   <section class="px-6 py-24 md:px-8 md:py-32">
     <div class="mx-auto max-w-content">
-      <div class="grid gap-14 md:grid-cols-2 md:gap-28">
-        <div>
-          <p class="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
-            Zusammenarbeit
-          </p>
-          <h2 class="font-display text-3xl font-semibold leading-tight md:text-4xl">
-            Und wenn du es mit Profis machen willst.
-          </h2>
-        </div>
-        <div class="space-y-6 text-lg leading-relaxed text-white/60">
-          <p>
-            Alles, was du brauchst, um es selbst umzusetzen, zeigen wir offen.
-            Wenn du es lieber mit einem Team machst, das genau das täglich tut,
-            übernehmen wir Strategie, Produktion und Distribution.
-          </p>
-          <p>
-            Wir nehmen bewusst nur eine begrenzte Anzahl an Projekten an, um
-            jedem die volle Aufmerksamkeit zu geben.
-          </p>
-        </div>
+      <p class="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
+        Wo stehst du?
+      </p>
+      <h2 class="font-display mb-16 max-w-2xl text-3xl font-semibold leading-tight md:text-4xl">
+        Wie können wir dir helfen?
+      </h2>
+      <div class="grid gap-px bg-white/10 md:grid-cols-3">
+        {
+          paths.map((p) => (
+            <a href={p.href} class="group flex flex-col gap-5 bg-black p-8 transition-colors hover:bg-white/[0.02] md:p-10">
+              <h3 class="font-display text-xl font-semibold leading-snug">{p.title}</h3>
+              <p class="leading-relaxed text-white/55">{p.text}</p>
+              <span class="mt-auto pt-2 text-sm font-semibold text-brand-green">Mehr erfahren</span>
+            </a>
+          ))
+        }
       </div>
     </div>
   </section>
 
-  <!-- 8. CTA -->
-  <CTA />
+  <!-- 7. CTA -->
+  <CTA
+    title="Bereit, gesehen zu werden?"
+    text="Alles, was du zum Selbermachen brauchst, zeigen wir offen. Wenn du es mit einem Team umsetzen willst, das es täglich tut, fülle das Formular aus und wir melden uns."
+  />
 </Layout>

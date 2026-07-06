@@ -3,6 +3,30 @@ import Layout from "../layouts/Layout.astro";
 import SpotlightCTA from "../components/SpotlightCTA.astro";
 import DrehtageAnimation from "../components/DrehtageAnimation.astro";
 
+const leistungen = [
+  {
+    nummer: "01",
+    title: "Content: Die Basis",
+    kurz: "Vertrauen, bevor der erste Kontakt entsteht",
+    beschreibung:
+      "Regelmäßiger Content zeigt echte Arbeit und echte Menschen dahinter. Welcher Kanal am besten zu dir passt, hängt von deiner Zielgruppe ab. Kunden vertrauen dir, bevor sie überhaupt anfragen.",
+  },
+  {
+    nummer: "02",
+    title: "Bezahlte Reichweite",
+    kurz: "Vertrauen ausbauen, Ergebnisse beschleunigen",
+    beschreibung:
+      "Organische Reichweite baut Vertrauen auf, bezahlte Werbung beschleunigt das Ergebnis und erreicht gezielt die Richtigen. Wer dich schon kennt, fragt günstiger und qualifizierter an.",
+  },
+  {
+    nummer: "03",
+    title: "Backend: Das Nervensystem",
+    kurz: "Damit kein Lead verloren geht",
+    beschreibung:
+      "Website, Landingpages und CRM sorgen dafür, dass jede Anfrage ankommt. Und: Kontrolle über die eigenen Daten, unabhängig von einzelnen Plattformen.",
+  },
+];
+
 const referenzen = [
   {
     kunde: "Felix Zimmermann",
@@ -191,36 +215,12 @@ const referenzen = [
           Dein Wissen muss <span class="marker">in Inhalte übersetzt werden</span>, die
           deine Zielgruppe sofort versteht.
         </p>
-
-        <p class="fade-line pt-6 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
-          Was getan werden muss
-        </p>
-        <p class="fade-line font-sans text-2xl font-semibold leading-snug text-white/80 md:text-3xl">
-          Nicht die Kanäle sind das Problem. Es ist das fehlende System.
-        </p>
-        <p class="fade-line font-sans text-2xl font-semibold leading-snug text-white/80 md:text-3xl">
-          Ads, Social Media oder eine neue Website funktionieren selten allein.
-        </p>
-        <p class="fade-line font-sans text-2xl font-semibold leading-snug text-white/80 md:text-3xl">
-          Es braucht <span class="marker">Content, der Vertrauen aufbaut</span>,
-          <span class="marker">bezahlte Reichweite, die beschleunigt</span> und ein
-          <span class="marker">Backend, das keine Anfrage verliert</span>.
-        </p>
-        <p class="fade-line font-sans text-2xl font-semibold leading-snug text-white/80 md:text-3xl">
-          Der Schlüssel liegt im Zusammenspiel.
-        </p>
-        <a
-          href="/leistungen"
-          class="fade-line inline-block text-sm font-medium text-white/50 underline underline-offset-4 hover:text-white"
-        >
-          Alle Leistungen ansehen
-        </a>
       </div>
     </div>
   </section>
 
   <script>
-    // Manifest-Zeilen (WHY/HOW/WAS): fade + slide, gestaffelt beim Einscrollen
+    // Manifest-Zeilen (WHY/HOW): fade + slide, gestaffelt beim Einscrollen
     (() => {
       const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       document.querySelectorAll<HTMLElement>("[data-fade-group]").forEach((group) => {
@@ -244,6 +244,53 @@ const referenzen = [
       });
     })();
   </script>
+
+  <!-- 4. Was: Leistungen -->
+  <section class="border-b border-white/10 px-6 py-24 md:px-8">
+    <div class="mx-auto max-w-content">
+      <div class="mb-16 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+        <div>
+          <p class="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
+            Was getan werden muss
+          </p>
+          <h2 class="font-display max-w-xl text-4xl font-semibold leading-tight md:text-5xl">
+            Nicht die Kanäle sind das Problem. Es ist das fehlende System.
+          </h2>
+          <p class="mt-6 max-w-xl text-lg leading-relaxed text-white/55">
+            Ads, Social Media oder eine neue Website funktionieren selten allein. Es
+            braucht drei Bausteine, die ineinandergreifen.
+          </p>
+        </div>
+        <a
+          href="/leistungen"
+          class="shrink-0 text-sm font-medium text-white/50 underline underline-offset-4 hover:text-white"
+        >
+          Alle Leistungen
+        </a>
+      </div>
+
+      <div class="grid gap-px bg-white/10 md:grid-cols-3">
+        {
+          leistungen.map(({ nummer, title, kurz, beschreibung }) => (
+            <div class="flex flex-col gap-6 bg-black p-8 transition-colors hover:bg-white/[0.03]">
+              <span class="font-display text-sm font-medium text-white/20">{nummer}</span>
+              <div>
+                <h3 class="font-display text-2xl font-semibold">{title}</h3>
+                <p class="mt-1 text-xs font-semibold uppercase tracking-widest text-brand-green">
+                  {kurz}
+                </p>
+              </div>
+              <p class="text-sm leading-relaxed text-white/55">{beschreibung}</p>
+            </div>
+          ))
+        }
+      </div>
+
+      <p class="mt-12 font-display text-2xl font-bold leading-tight md:text-3xl">
+        Der Schlüssel liegt im Zusammenspiel.
+      </p>
+    </div>
+  </section>
 
   <!-- 3. Referenzen-Teaser -->
   <section class="border-b border-white/10 px-6 py-24 md:px-8">

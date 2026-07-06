@@ -104,16 +104,24 @@
 .fade-line {
   opacity: 0;
   transform: translateY(14px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transition: opacity 0.7s ease, transform 0.7s ease, filter 0.9s ease;
 }
 .fade-line.is-visible {
   opacity: 1;
   transform: none;
 }
+/* Pointenzeile: entblurrt zusaetzlich beim Einscrollen */
+.fade-line.blur-line {
+  filter: blur(10px);
+}
+.fade-line.blur-line.is-visible {
+  filter: blur(0);
+}
 @media (prefers-reduced-motion: reduce) {
   .fade-line {
     opacity: 1;
     transform: none;
+    filter: none;
     transition: none;
   }
 }

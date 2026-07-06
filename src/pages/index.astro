@@ -90,8 +90,7 @@ const referenzen = [
         <span class="block whitespace-nowrap">sichtbar machen.</span>
       </h1>
       <p class="mb-12 max-w-xl text-lg leading-relaxed text-white/70 md:text-xl">
-        Deine Expertise verdient Sichtbarkeit. Wir bauen das System, das deine Zielgruppe
-        täglich zu dir führt.
+        Deine Expertise ist besser als die deiner Konkurrenz. Nur sieht das niemand.
       </p>
       <div class="flex flex-wrap items-center gap-4">
         <a
@@ -175,7 +174,76 @@ const referenzen = [
     }
   </script>
 
-  <!-- 2. Leistungen -->
+  <!-- 2. Warum: Customer-Golden-Circle -- warum Sichtbarkeit zaehlt -->
+  <section class="border-b border-white/10 px-6 py-24 md:px-8 md:py-32">
+    <div class="mx-auto max-w-content">
+      <p class="mb-10 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
+        Warum Sichtbarkeit zählt
+      </p>
+      <div data-fade-group class="max-w-2xl space-y-6">
+        <p class="fade-line font-display text-2xl font-semibold leading-snug md:text-4xl">
+          Gute Arbeit überzeugt nur die, die sie schon erlebt haben.
+        </p>
+        <p class="fade-line font-display text-2xl font-semibold leading-snug md:text-4xl">
+          Alle anderen sehen nur, was sichtbar ist.
+        </p>
+        <p class="fade-line font-display text-2xl font-semibold leading-snug text-white/40 md:text-4xl">
+          Deshalb gewinnen oft nicht die Besten.
+        </p>
+        <p class="fade-line font-display text-2xl font-bold leading-snug text-brand-green md:text-4xl">
+          Sondern die Sichtbarsten.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Wie: Expertise wird uebersetzt und verstanden -->
+  <section class="border-b border-white/10 px-6 py-24 md:px-8 md:py-32">
+    <div class="mx-auto max-w-content">
+      <p class="mb-10 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
+        Wie das gelingt
+      </p>
+      <div data-fade-group class="max-w-2xl space-y-6">
+        <p class="fade-line font-display text-2xl font-semibold leading-snug md:text-4xl">
+          Je mehr Expertise du hast, desto normaler wird sie dir selbst.
+        </p>
+        <p class="fade-line font-display text-2xl font-semibold leading-snug md:text-4xl">
+          Was für dich selbstverständlich ist, bleibt für andere unsichtbar.
+        </p>
+        <p class="fade-line font-display text-2xl font-bold leading-snug text-brand-green md:text-4xl">
+          Wir übersetzen dein Wissen in Inhalte, die deine Zielgruppe sofort versteht.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Manifest-Zeilen (WHY/HOW): fade + slide, gestaffelt beim Einscrollen
+    (() => {
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      document.querySelectorAll<HTMLElement>("[data-fade-group]").forEach((group) => {
+        const lines = group.querySelectorAll<HTMLElement>(".fade-line");
+        if (reduce) {
+          lines.forEach((l) => l.classList.add("is-visible"));
+          return;
+        }
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                lines.forEach((l, i) => setTimeout(() => l.classList.add("is-visible"), i * 150));
+                io.disconnect();
+              }
+            });
+          },
+          { threshold: 0.4 },
+        );
+        io.observe(group);
+      });
+    })();
+  </script>
+
+  <!-- 4. Was: Leistungen -->
   <section class="border-b border-white/10 px-6 py-24 md:px-8">
     <div class="mx-auto max-w-content">
       <div class="mb-16 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">

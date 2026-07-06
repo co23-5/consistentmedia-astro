@@ -77,27 +77,27 @@ const aufwandPasstNicht = 14;
     const heading = document.getElementById("hero-heading");
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    // Schriftgroesse pro Wort so berechnen, dass "[Wort] sichtbar machen."
-    // immer auf einer Zeile bleibt -- kein Zeilenumbruch/-sprung mehr.
-    let currentWord = words[0];
+    // Eine feste Schriftgroesse fuers laengste Wort, damit sich die Groesse
+    // beim Wortwechsel nie veraendert -- nur bei echter Fensterbreiten-Aenderung.
+    const longestWord = words.reduce((a, b) => (b.length > a.length ? b : a));
     const measureCanvas = document.createElement("canvas");
     const measureCtx = measureCanvas.getContext("2d");
-    const sizeToFit = (word: string) => {
+    const sizeToFit = () => {
       if (!heading || !measureCtx) return;
       const container = heading.parentElement;
       const maxWidth = (container ? container.clientWidth : window.innerWidth) * 0.98;
       const probe = 100;
       measureCtx.font = `700 ${probe}px ClashDisplay, sans-serif`;
-      const textWidth = measureCtx.measureText(`${word} sichtbar machen.`).width;
+      const textWidth = measureCtx.measureText(`${longestWord} sichtbar machen.`).width;
       let size = (maxWidth / textWidth) * probe;
       size = Math.max(22, Math.min(size, 88));
       heading.style.fontSize = `${size}px`;
     };
-    sizeToFit(currentWord);
+    sizeToFit();
     if (document.fonts) {
-      document.fonts.ready.then(() => sizeToFit(currentWord));
+      document.fonts.ready.then(sizeToFit);
     }
-    window.addEventListener("resize", () => sizeToFit(currentWord));
+    window.addEventListener("resize", sizeToFit);
 
     if (el && !reduce) {
       let wordIndex = 0;
@@ -120,8 +120,6 @@ const aufwandPasstNicht = 14;
           if (charIndex === 0) {
             deleting = false;
             wordIndex = (wordIndex + 1) % words.length;
-            currentWord = words[wordIndex];
-            sizeToFit(currentWord); // Groesse fuers naechste Wort steht schon vor dem Tippen fest
             setTimeout(tick, 350); // Pause vor dem naechsten Wort
             return;
           }

@@ -1,0 +1,153 @@
+---
+const outputs = [
+  "Vorqualifizierte Anfragen",
+  "Konstante Sichtbarkeit",
+  "Weniger Fragen",
+  "Mehr System",
+];
+---
+
+<div
+  id="drehtage"
+  class="mt-10 border-t border-white/10 pt-8 md:mt-16 md:pt-10"
+  style="contain: layout style;"
+>
+  <div class="flex flex-col gap-8 md:flex-row md:items-center md:gap-0">
+    <!-- Input: Countdown -->
+    <div class="flex flex-col gap-1 md:w-64">
+      <p class="text-xs font-semibold uppercase tracking-[0.2em] text-white/50">Dein Aufwand</p>
+      <div class="flex items-baseline gap-3">
+        <span
+          id="drehtage-count"
+          class="font-display text-5xl font-semibold tabular-nums md:text-6xl"
+          style="min-width: 2.5ch;"
+        >
+          80
+        </span>
+        <span
+          id="drehtage-unit"
+          class="font-display text-xl font-semibold text-white/55"
+          style="min-width: 7ch;"
+        >
+          Std.
+        </span>
+      </div>
+      <p
+        id="drehtage-note"
+        class="mt-1 text-xs text-white/50 transition-opacity duration-500"
+        style="opacity: 0;"
+      >
+        Mehr brauchst du nicht.
+      </p>
+    </div>
+
+    <!-- Pfeil: Desktop -->
+    <div class="hidden md:flex md:flex-1 md:items-center md:px-8">
+      <div class="relative w-full">
+        <div class="h-px w-full bg-gradient-to-r from-white/10 to-white/30"></div>
+        <div
+          class="absolute right-0 top-1/2 -translate-y-1/2 border-4 border-transparent border-l-white/30"
+        >
+        </div>
+      </div>
+    </div>
+
+    <!-- Pfeil: Mobil -->
+    <div class="flex items-center gap-3 md:hidden">
+      <div class="h-px flex-1 bg-white/10"></div>
+      <span class="text-sm text-white/50">↓</span>
+      <div class="h-px flex-1 bg-white/10"></div>
+    </div>
+
+    <!-- Output -->
+    <div class="flex flex-col gap-1 md:w-72 md:items-end">
+      <p class="text-xs font-semibold uppercase tracking-[0.2em] text-white/50">Was entsteht</p>
+      <div style="min-height: 5rem;">
+        <p
+          id="drehtage-output"
+          class="font-display text-3xl font-semibold text-brand-green md:text-right md:text-4xl"
+          style="transition: opacity 0.3s ease, transform 0.3s ease;"
+        >
+          {outputs[0]}
+        </p>
+      </div>
+      <div id="drehtage-dots" class="mt-2 flex gap-1.5 md:justify-end">
+        {
+          outputs.map((_, i) => (
+            <span
+              class="drehtage-dot block h-1 w-1 rounded-full transition-colors duration-300"
+              style={`background: ${i === 0 ? "#66ff99" : "rgba(255,255,255,0.2)"};`}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const outputs = [
+    "Vorqualifizierte Anfragen",
+    "Konstante Sichtbarkeit",
+    "Weniger Fragen",
+    "Mehr System",
+  ];
+
+  const el = document.getElementById("drehtage");
+  const countEl = document.getElementById("drehtage-count");
+  const unitEl = document.getElementById("drehtage-unit");
+  const noteEl = document.getElementById("drehtage-note");
+  const outputEl = document.getElementById("drehtage-output");
+  const dots = document.querySelectorAll<HTMLElement>(".drehtage-dot");
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (el && countEl && unitEl && noteEl) {
+    const setCount = (n: number) => {
+      countEl.textContent = String(n);
+      unitEl.textContent = n === 8 ? "Std. / Monat" : "Std.";
+      noteEl.style.opacity = n === 8 ? "1" : "0";
+    };
+
+    if (reduce) {
+      setCount(8);
+    } else {
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              const duration = 1600;
+              const start = performance.now();
+              const tick = (now: number) => {
+                const progress = Math.min((now - start) / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 2);
+                setCount(Math.round(80 - eased * 72));
+                if (progress < 1) requestAnimationFrame(tick);
+              };
+              requestAnimationFrame(tick);
+              io.disconnect();
+            }
+          });
+        },
+        { threshold: 0.4 },
+      );
+      io.observe(el);
+    }
+  }
+
+  if (outputEl && !reduce) {
+    let active = 0;
+    setInterval(() => {
+      outputEl.style.opacity = "0";
+      outputEl.style.transform = "translateY(6px)";
+      setTimeout(() => {
+        active = (active + 1) % outputs.length;
+        outputEl.textContent = outputs[active];
+        dots.forEach((d, i) => {
+          d.style.background = i === active ? "#66ff99" : "rgba(255,255,255,0.2)";
+        });
+        outputEl.style.opacity = "1";
+        outputEl.style.transform = "translateY(0)";
+      }, 300);
+    }, 2200);
+  }
+</script>

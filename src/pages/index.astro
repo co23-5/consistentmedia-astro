@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import SpotlightCTA from "../components/SpotlightCTA.astro";
+import DrehtageAnimation from "../components/DrehtageAnimation.astro";
 
 const leistungen = [
   {
@@ -53,7 +54,7 @@ const referenzen = [
   description="Traffic-Agentur für Unternehmer, die fachlich stark sind und online sichtbar werden wollen. Wir bauen Systeme aus YouTube-Content, Social Media, Paid Ads und digitalem Backend."
 >
   <!-- 1. Hero: Studio-Video im Hintergrund -->
-  <section class="relative -mt-[73px] flex min-h-[100svh] flex-col justify-center overflow-hidden border-b border-white/10 px-6 pb-24 pt-[73px] md:px-8">
+  <section class="relative -mt-[73px] flex min-h-[100svh] flex-col justify-end overflow-hidden pb-20 md:justify-center md:pb-24">
     <video
       autoplay
       muted
@@ -74,35 +75,37 @@ const referenzen = [
     >
       <source src="/consistent-media-studio-header-hochkant.mp4" type="video/mp4" />
     </video>
-    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/40"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/20"></div>
 
-    <div class="relative mx-auto w-full max-w-content text-center">
+    <div class="relative mx-auto w-full max-w-content px-6 pt-[73px]">
       <h1
         id="hero-heading"
-        class="font-display whitespace-nowrap font-bold leading-[1.05] tracking-tight"
-        style="font-size: clamp(1.7rem, 6vw, 4.5rem);"
+        class="font-display mb-8 whitespace-nowrap font-bold leading-[1.05] tracking-tight"
+        style="font-size: clamp(1.9rem, 6.5vw, 6.5rem);"
       >
         <span id="rotating-word" class="rotating-word text-brand-green">Expertise</span
         ><span class="caret text-brand-green" aria-hidden="true">|</span> sichtbar machen.
       </h1>
-      <p class="mx-auto mt-8 max-w-xl text-lg leading-relaxed text-white/60 md:text-xl">
+      <p class="mb-12 max-w-xl text-lg leading-relaxed text-white/70 md:text-xl">
         Deine Expertise verdient Sichtbarkeit. Wir bauen das System, das deine Zielgruppe
         täglich zu dir führt.
       </p>
-      <div class="mt-14 flex flex-wrap items-center justify-center gap-4">
+      <div class="flex flex-wrap items-center gap-4">
         <a
           href="/kontakt"
-          class="border border-brand-green bg-brand-green px-8 py-4 text-sm font-semibold text-black transition-opacity hover:opacity-90"
+          class="border border-brand-green px-8 py-4 text-sm font-semibold text-brand-green backdrop-blur-sm transition-colors hover:bg-brand-green hover:text-black"
         >
           Zusammenarbeit anfragen
         </a>
         <a
           href="/leistungen"
-          class="border border-white/40 px-8 py-4 text-sm font-semibold text-white backdrop-blur-sm transition-colors hover:border-white/70"
+          class="border border-white/30 px-8 py-4 text-sm font-semibold text-white backdrop-blur-sm transition-colors hover:border-white/60"
         >
           Leistungen ansehen
         </a>
       </div>
+
+      <DrehtageAnimation />
     </div>
   </section>
 

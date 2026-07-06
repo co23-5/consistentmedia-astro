@@ -104,24 +104,31 @@
 .fade-line {
   opacity: 0;
   transform: translateY(14px);
-  transition: opacity 0.7s ease, transform 0.7s ease, filter 0.9s ease;
+  transition: opacity 0.7s ease, transform 0.7s ease;
 }
 .fade-line.is-visible {
   opacity: 1;
   transform: none;
 }
-/* Pointenzeile: entblurrt zusaetzlich beim Einscrollen */
-.fade-line.blur-line {
-  filter: blur(10px);
+/* Marker/Textmarker-Effekt fuer die in Szene gesetzten Satzteile */
+.marker {
+  background-image: linear-gradient(rgba(102, 255, 153, 0.35), rgba(102, 255, 153, 0.35));
+  background-repeat: no-repeat;
+  background-position: 0 88%;
+  background-size: 0% 40%;
+  transition: background-size 0.9s ease 0.15s;
 }
-.fade-line.blur-line.is-visible {
-  filter: blur(0);
+.fade-line.is-visible .marker {
+  background-size: 100% 40%;
 }
 @media (prefers-reduced-motion: reduce) {
+  .marker {
+    background-size: 100% 40%;
+    transition: none;
+  }
   .fade-line {
     opacity: 1;
     transform: none;
-    filter: none;
     transition: none;
   }
 }

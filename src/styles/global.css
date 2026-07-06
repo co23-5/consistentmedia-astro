@@ -131,8 +131,8 @@
 /* Hebel-Container: Kunden- und Mitarbeiter-Punkte fallen als Funnel ins Unternehmen */
 .lever-stage {
   overflow: hidden;
-  clip-path: polygon(4% 0, 96% 0, 66% 100%, 34% 100%);
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+  clip-path: polygon(2% 0, 98% 0, 54% 100%, 46% 100%);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.01));
 }
 .lever-dot {
   position: absolute;
@@ -172,10 +172,51 @@
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-top: none;
 }
+.bucket-dot {
+  position: absolute;
+  bottom: var(--by, 6px);
+  left: var(--bx, 50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  opacity: 0;
+  transform: translateX(-50%) scale(0);
+  animation: bucket-fill 10s ease-in-out infinite;
+}
+.bucket-dot-kunde {
+  background: var(--color-brand-green);
+}
+.bucket-dot-mitarbeiter {
+  background: var(--color-talent);
+}
+@keyframes bucket-fill {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) scale(0);
+  }
+  6% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+  80% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+  92%,
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.4);
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   .lever-dot {
     animation: none;
     opacity: 0.5;
+  }
+  .bucket-dot {
+    animation: none;
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
   }
 }
 

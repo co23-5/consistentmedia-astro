@@ -80,11 +80,14 @@ const referenzen = [
     <div class="relative mx-auto w-full max-w-content px-6 pt-[73px]">
       <h1
         id="hero-heading"
-        class="font-display mb-8 whitespace-nowrap font-bold leading-[1.05] tracking-tight"
+        class="font-display mb-8 font-bold leading-[1.05] tracking-tight"
         style="font-size: clamp(1.9rem, 6.5vw, 6.5rem);"
       >
-        <span id="rotating-word" class="rotating-word text-brand-green">Expertise</span
-        ><span class="caret text-brand-green" aria-hidden="true">|</span> sichtbar machen.
+        <span class="block whitespace-nowrap"
+          ><span id="rotating-word" class="rotating-word text-brand-green">Expertise</span
+          ><span class="caret text-brand-green" aria-hidden="true">|</span></span
+        >
+        <span class="block whitespace-nowrap">sichtbar machen.</span>
       </h1>
       <p class="mb-12 max-w-xl text-lg leading-relaxed text-white/70 md:text-xl">
         Deine Expertise verdient Sichtbarkeit. Wir bauen das System, das deine Zielgruppe
@@ -126,7 +129,11 @@ const referenzen = [
       const maxWidth = (container ? container.clientWidth : window.innerWidth) * 0.98;
       const probe = 100;
       measureCtx.font = `700 ${probe}px ClashDisplay, sans-serif`;
-      const textWidth = measureCtx.measureText(`${longestWord} sichtbar machen.`).width;
+      // Wort und "sichtbar machen." stehen jetzt auf eigenen Zeilen -- beide muessen
+      // einzeln in die Breite passen, es zaehlt die breitere der beiden Zeilen.
+      const wordWidth = measureCtx.measureText(longestWord).width;
+      const secondLineWidth = measureCtx.measureText("sichtbar machen.").width;
+      const textWidth = Math.max(wordWidth, secondLineWidth);
       let size = (maxWidth / textWidth) * probe;
       size = Math.max(22, Math.min(size, 88));
       heading.style.fontSize = `${size}px`;

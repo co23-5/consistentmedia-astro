@@ -10,7 +10,7 @@ const aufwandPasstNicht = 14;
 
 <Layout
   title="Consistent Media"
-  description="Die Besten sollten gewinnen, nicht die Lautesten. Wir machen echte Expertise sichtbar, über YouTube, Content und Ads."
+  description="Damit die richtigen Kunden anfragen und die richtigen Mitarbeiter sich bei dir bewerben. Wir machen deine Expertise sichtbar, über YouTube, Content und Ads."
 >
   <!-- 1. Hero: das Warum, mit Studio-Video im Hintergrund -->
   <section class="relative -mt-[73px] flex min-h-[100svh] flex-col justify-center overflow-hidden border-b border-white/10 px-6 pb-24 pt-[73px] md:px-8">
@@ -37,13 +37,15 @@ const aufwandPasstNicht = 14;
     <div class="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/40"></div>
 
     <div class="relative mx-auto w-full max-w-content text-center">
-      <h1 class="font-display font-bold leading-[1.05] tracking-tight text-[clamp(1.9rem,8vw,4.5rem)]">
-        <span class="whitespace-nowrap"><span id="rotating-word" class="rotating-word text-brand-green"
-            >Expertise</span
-          ><span class="caret text-brand-green" aria-hidden="true">|</span></span
-        >
-        <br />sichtbar machen.
+      <h1 class="font-display font-bold leading-[1.05] tracking-tight text-[clamp(1.7rem,6vw,4.5rem)]">
+        <span class="whitespace-nowrap"
+          ><span id="rotating-word" class="rotating-word text-brand-green">Expertise</span
+          ><span class="caret text-brand-green" aria-hidden="true">|</span> sichtbar</span
+        > machen.
       </h1>
+      <p class="mx-auto mt-8 max-w-xl text-lg leading-relaxed text-white/60 md:text-xl">
+        Damit die richtigen Kunden anfragen und die richtigen Mitarbeiter sich bei dir bewerben.
+      </p>
       <div class="mt-14 flex flex-wrap items-center justify-center gap-4">
         <a
           href="/kontakt"
@@ -102,45 +104,41 @@ const aufwandPasstNicht = 14;
     }
   </script>
 
-  <!-- 2. Manifest: das Herzstück, auf Notizblock-Raster -->
-  <section class="paper-grid border-b border-white/10 px-6 py-28 md:px-8 md:py-40">
-    <div class="mx-auto max-w-3xl">
-      <h2 class="font-display mb-10 text-4xl font-semibold leading-tight md:text-5xl">
-        Warum das alles?
-      </h2>
-      <div class="space-y-8 text-xl leading-relaxed text-white/70 md:text-2xl md:leading-relaxed">
-        <p>
-          Viele Unternehmen haben geniale Lösungen für unterschiedlichste
-          Probleme, die von tollen Menschen umgesetzt werden. Das Problem? Man
-          muss das Glück haben, sie persönlich zu kennen oder empfohlen bekommen
-          zu haben, da sie online entweder nicht aufzufinden sind oder der
-          Online-Auftritt schlicht und einfach nichtssagend ist.
-        </p>
-        <p>Deshalb ist unsere Mission:</p>
-      </div>
-      <p class="font-display mt-10 whitespace-nowrap font-semibold leading-none text-[clamp(1.35rem,6vw,3.25rem)]">
-        Expertise <span class="reveal-word text-brand-green">sichtbar</span> machen.
+  <!-- 2. Bridge: Sichtbarkeit wirkt nach zwei Seiten -->
+  <section class="border-b border-white/10 px-6 py-24 md:px-8 md:py-32">
+    <div class="mx-auto max-w-content">
+      <p class="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
+        Eine Sache, zwei Wirkungen
       </p>
+      <h2 class="font-display mb-16 max-w-2xl text-3xl font-semibold leading-tight md:text-4xl">
+        Sichtbare Expertise verändert zwei Dinge gleichzeitig.
+      </h2>
+      <div class="grid gap-px bg-white/10 md:grid-cols-2">
+        <div class="bg-black p-8 md:p-10">
+          <svg viewBox="0 0 24 24" class="mb-6 h-8 w-8 text-brand-green" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <circle cx="12" cy="8" r="4" />
+            <path d="M4 20c0-4 3.5-6 8-6s8 2 8 6" />
+          </svg>
+          <p class="font-display mb-3 text-xl font-semibold">Kundengewinnung</p>
+          <p class="text-white/55 leading-relaxed">
+            Die richtigen Kunden erkennen dich als Lösung, bevor sie überhaupt anfragen.
+          </p>
+        </div>
+        <div class="bg-black p-8 md:p-10">
+          <svg viewBox="0 0 24 24" class="mb-6 h-8 w-8 text-brand-green" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <circle cx="8" cy="9" r="3.2" />
+            <circle cx="16.5" cy="9.5" r="2.6" />
+            <path d="M2.5 20c0-3.5 2.7-5.5 5.5-5.5s5.5 2 5.5 5.5" />
+            <path d="M14.5 14.8c2.4.2 4.5 2 4.5 5.2" />
+          </svg>
+          <p class="font-display mb-3 text-xl font-semibold">Arbeitgebermarke</p>
+          <p class="text-white/55 leading-relaxed">
+            Die richtigen Mitarbeiter trauen sich, zu dir zu wechseln.
+          </p>
+        </div>
+      </div>
     </div>
   </section>
-
-  <script>
-    const word = document.querySelector(".reveal-word");
-    if (word) {
-      const io = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((e) => {
-            if (e.isIntersecting) {
-              word.classList.add("is-visible");
-              io.disconnect();
-            }
-          });
-        },
-        { threshold: 0.6 },
-      );
-      io.observe(word);
-    }
-  </script>
 
   <!-- 2b. Du kennst das: gleiches Ergebnis, mehr Aufwand -->
   <section class="border-b border-white/10 px-6 py-24 md:px-8 md:py-32">
@@ -149,7 +147,7 @@ const aufwandPasstNicht = 14;
         Du kennst das
       </p>
       <h2 class="font-display mb-6 max-w-3xl text-3xl font-semibold leading-tight md:text-4xl">
-        Manche <span class="whitespace-nowrap"><span id="kennst-word" class="text-brand-green">Produkte</span><span class="caret text-brand-green" aria-hidden="true">|</span></span><br />bringen mehr Umsatz als andere.
+        Manche deiner <span class="whitespace-nowrap"><span id="kennst-word" class="text-brand-green">Kunden</span><span class="caret text-brand-green" aria-hidden="true">|</span></span><br />bringen mehr Umsatz als andere.
       </h2>
       <p class="mb-16 max-w-xl text-lg leading-relaxed text-white/55">
         Aber du hast nicht genug davon, um die anderen Aufträge einfach
@@ -159,7 +157,7 @@ const aufwandPasstNicht = 14;
       <div id="cost-compare" class="grid gap-px bg-white/10 md:grid-cols-2">
         <div class="flex flex-col bg-black p-8 md:p-10">
           <p class="text-xs font-semibold uppercase tracking-widest text-white/50">
-            Passende Aufträge
+            Die richtigen Aufträge
           </p>
           <div class="mb-12 mt-8 flex max-w-52 flex-wrap gap-3">
             {
@@ -182,7 +180,7 @@ const aufwandPasstNicht = 14;
 
         <div class="flex flex-col bg-black p-8 md:p-10">
           <p class="text-xs font-semibold uppercase tracking-widest text-white/50">
-            Unpassende Aufträge
+            Aufträge, die zu dir kommen
           </p>
           <div class="mb-12 mt-8 flex max-w-52 flex-wrap gap-3">
             {
@@ -213,7 +211,7 @@ const aufwandPasstNicht = 14;
   <script>
     // Typewriter fuer "Du kennst das"
     (() => {
-      const words = ["Produkte", "Kunden", "Dienstleistungen"];
+      const words = ["Kunden", "Aufträge", "Dienstleistungen"];
       const el = document.getElementById("kennst-word");
       const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       if (!el || reduce) return;
@@ -267,7 +265,55 @@ const aufwandPasstNicht = 14;
     })();
   </script>
 
-  <!-- 2c. Das Ziel -->
+  <!-- 2c. Arbeitgebermarke -->
+  <section class="border-b border-white/10 px-6 py-24 md:px-8 md:py-32">
+    <div class="mx-auto max-w-content">
+      <p class="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
+        Arbeitgebermarke
+      </p>
+      <h2 class="font-display mb-6 max-w-2xl text-3xl font-semibold leading-tight md:text-4xl">
+        Gute Mitarbeiter wechseln nicht leichtfertig.
+      </h2>
+      <p class="mb-16 max-w-xl text-lg leading-relaxed text-white/55">
+        Wer über einen Wechsel nachdenkt, wägt vor allem drei Dinge ab: das Gehalt,
+        das Team und die Karrierechancen. Und selbst wenn bei dir alles davon besser
+        wäre, wechselt niemand ins Ungewisse.
+      </p>
+
+      <div class="grid gap-px bg-white/10 md:grid-cols-3">
+        <div class="flex flex-col items-center gap-4 bg-black px-6 py-10 text-center">
+          <svg viewBox="0 0 24 24" class="h-8 w-8 text-brand-green" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" />
+            <path d="M9.5 15.5c0 1 1 1.8 2.5 1.8s2.5-.7 2.5-1.7c0-2.5-5-1.2-5-3.6 0-1 1-1.7 2.5-1.7s2.5.7 2.5 1.7" />
+            <path d="M12 7v1.2M12 15.8V17" />
+          </svg>
+          <p class="text-sm font-semibold uppercase tracking-widest text-white/70">Gehalt</p>
+        </div>
+        <div class="flex flex-col items-center gap-4 bg-black px-6 py-10 text-center">
+          <svg viewBox="0 0 24 24" class="h-8 w-8 text-brand-green" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <circle cx="8" cy="9" r="3.2" />
+            <circle cx="16.5" cy="9.5" r="2.6" />
+            <path d="M2.5 20c0-3.5 2.7-5.5 5.5-5.5s5.5 2 5.5 5.5" />
+            <path d="M14.5 14.8c2.4.2 4.5 2 4.5 5.2" />
+          </svg>
+          <p class="text-sm font-semibold uppercase tracking-widest text-white/70">Team</p>
+        </div>
+        <div class="flex flex-col items-center gap-4 bg-black px-6 py-10 text-center">
+          <svg viewBox="0 0 24 24" class="h-8 w-8 text-brand-green" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M4 20V14M11 20V9M18 20V4" />
+            <path d="M2.5 20h19" />
+          </svg>
+          <p class="text-sm font-semibold uppercase tracking-widest text-white/70">Karriere</p>
+        </div>
+      </div>
+
+      <p class="mt-12 font-display text-2xl font-bold leading-tight md:text-3xl">
+        Sichtbarkeit nimmt das Risiko aus dem Wechsel.
+      </p>
+    </div>
+  </section>
+
+  <!-- 2d. Das Ziel -->
   <section class="border-b border-white/10 px-6 py-24 md:px-8 md:py-32">
     <div class="mx-auto max-w-content">
       <p class="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
@@ -290,11 +336,11 @@ const aufwandPasstNicht = 14;
                 </svg>
                 Anfragen
               </span>
-              <span class="counter font-display text-4xl font-semibold tabular-nums md:text-5xl" data-target="120" data-duration="24000">0</span>
+              <span class="counter font-display text-4xl font-semibold tabular-nums md:text-5xl" data-target="45" data-duration="24000">0</span>
             </div>
             <div class="flex items-end justify-between gap-4">
               <span class="text-sm text-white/55">davon passend</span>
-              <span class="counter font-display text-4xl font-semibold tabular-nums text-brand-green md:text-5xl" data-target="12" data-duration="24000">0</span>
+              <span class="counter font-display text-4xl font-semibold tabular-nums text-brand-green md:text-5xl" data-target="5" data-duration="24000">0</span>
             </div>
           </div>
         </div>
@@ -312,11 +358,11 @@ const aufwandPasstNicht = 14;
                 </svg>
                 Anfragen
               </span>
-              <span class="counter font-display text-4xl font-semibold tabular-nums md:text-5xl" data-target="150" data-duration="24000">0</span>
+              <span class="counter font-display text-4xl font-semibold tabular-nums md:text-5xl" data-target="180" data-duration="24000">0</span>
             </div>
             <div class="flex items-end justify-between gap-4">
               <span class="text-sm text-white/55">davon passend</span>
-              <span class="counter font-display text-4xl font-semibold tabular-nums text-brand-green md:text-5xl" data-target="90" data-duration="24000">0</span>
+              <span class="counter font-display text-4xl font-semibold tabular-nums text-brand-green md:text-5xl" data-target="150" data-duration="24000">0</span>
             </div>
           </div>
         </div>

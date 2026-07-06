@@ -164,6 +164,7 @@ const referenzen = [
           if (charIndex === 0) {
             deleting = false;
             wordIndex = (wordIndex + 1) % words.length;
+            document.dispatchEvent(new CustomEvent("cm:word-change"));
             setTimeout(tick, 350); // Pause vor dem naechsten Wort
             return;
           }

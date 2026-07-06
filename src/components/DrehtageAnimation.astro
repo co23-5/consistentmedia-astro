@@ -136,7 +136,9 @@ const outputs = [
 
   if (outputEl && !reduce) {
     let active = 0;
-    setInterval(() => {
+    // Wechselt nur, wenn der Hero-Typewriter ein neues Wort beginnt --
+    // beide Animationen aendern sich dadurch gleichzeitig statt gegeneinander.
+    document.addEventListener("cm:word-change", () => {
       outputEl.style.opacity = "0";
       outputEl.style.transform = "translateY(6px)";
       setTimeout(() => {
@@ -148,6 +150,6 @@ const outputs = [
         outputEl.style.opacity = "1";
         outputEl.style.transform = "translateY(0)";
       }, 300);
-    }, 2200);
+    });
   }
 </script>

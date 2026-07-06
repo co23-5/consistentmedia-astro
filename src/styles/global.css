@@ -128,11 +128,11 @@
   }
 }
 
-/* Hebel-Container: Kunden- und Mitarbeiter-Punkte fallen ins Unternehmen */
+/* Hebel-Container: Kunden- und Mitarbeiter-Punkte fallen als Funnel ins Unternehmen */
 .lever-stage {
   overflow: hidden;
-  border: 1px dashed rgba(255, 255, 255, 0.12);
-  border-bottom: none;
+  clip-path: polygon(4% 0, 96% 0, 66% 100%, 34% 100%);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
 }
 .lever-dot {
   position: absolute;
@@ -142,7 +142,7 @@
   height: 9px;
   border-radius: 50%;
   opacity: 0;
-  animation: lever-fall 3.6s linear infinite;
+  animation: lever-fall 3.6s ease-in infinite;
 }
 .lever-dot-kunde {
   background: var(--color-brand-green);
@@ -152,7 +152,7 @@
 }
 @keyframes lever-fall {
   0% {
-    transform: translateY(-10px);
+    transform: translate(0, -10px);
     opacity: 0;
   }
   10% {
@@ -162,7 +162,7 @@
     opacity: 1;
   }
   100% {
-    transform: translateY(210px);
+    transform: translate(var(--dx, 0px), 210px);
     opacity: 0;
   }
 }

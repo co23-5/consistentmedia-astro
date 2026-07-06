@@ -6,6 +6,20 @@ import SpotlightCTA from "../components/SpotlightCTA.astro";
 // Kreise = Aufwand (Mitarbeiter, Arbeitsmittel, Zeit ...), Rechteck = Umsatz.
 const aufwandPasst = 8;
 const aufwandPasstNicht = 14;
+
+// Hebel-Panel: Punkte starten breit gestreut und driften beim Fallen
+// zur Mitte, damit die Bewegung wie ein Funnel wirkt (Stage ist max-w-xs = 320px).
+const STAGE_WIDTH = 288;
+const leverDots = Array.from({ length: 12 }).map((_, i) => {
+  const fxPercent = 10 + i * 6.7;
+  const dxPx = Math.round(STAGE_WIDTH / 2 - (STAGE_WIDTH * fxPercent) / 100);
+  return {
+    kind: i % 2 === 0 ? "kunde" : "mitarbeiter",
+    fxPercent,
+    dxPx,
+    delay: i * 0.35,
+  };
+});
 ---
 
 <Layout
@@ -137,20 +151,20 @@ const aufwandPasstNicht = 14;
         Der Hebel: Sichtbarkeit
       </p>
       <h2 class="font-display mb-6 max-w-2xl text-3xl font-semibold leading-tight md:text-4xl">
-        Neue Kunden. Und Mitarbeiter, die die Arbeit erledigen.
+        Ein Unternehmen braucht entweder neue Kunden oder neue Mitarbeiter.
       </h2>
       <p class="mb-16 max-w-2xl text-lg leading-relaxed text-white/55">
-        Sichtbarkeit ist dafür der größte Hebel. Und er wird immer größer, je länger du
-        sie aufbaust — genau wie das Vertrauen, das dabei entsteht.
+        Sichtbarkeit ist dafür ein großer Hebel und er wird immer größer, je länger du
+        ihn aufbaust. Genau wie das Vertrauen, das dabei entsteht.
       </p>
 
       <div class="mx-auto flex max-w-xs flex-col items-center">
         <div class="lever-stage relative h-48 w-full">
           {
-            Array.from({ length: 12 }).map((_, i) => (
+            leverDots.map((dot) => (
               <span
-                class={`lever-dot ${i % 2 === 0 ? "lever-dot-kunde" : "lever-dot-mitarbeiter"}`}
-                style={`--fx:${6 + i * 7.5}%; animation-delay:${i * 0.35}s;`}
+                class={`lever-dot lever-dot-${dot.kind}`}
+                style={`--fx:${dot.fxPercent}%; --dx:${dot.dxPx}px; animation-delay:${dot.delay}s;`}
               />
             ))
           }
@@ -194,7 +208,10 @@ const aufwandPasstNicht = 14;
           <p class="text-xs font-semibold uppercase tracking-widest text-white/50">
             Die richtigen Aufträge
           </p>
-          <div class="mb-12 mt-8 flex max-w-52 flex-wrap gap-3">
+          <p class="mt-8 text-sm font-semibold uppercase tracking-widest text-effort">
+            Aufwand
+          </p>
+          <div class="mb-12 mt-3 flex max-w-52 flex-wrap gap-3">
             {
               Array.from({ length: aufwandPasst }).map(() => (
                 <span class="effort-dot inline-block h-5 w-5">
@@ -239,7 +256,7 @@ const aufwandPasstNicht = 14;
 
       <p class="mt-8 flex items-center justify-center gap-2 text-xs text-white/40">
         <span class="inline-block h-2 w-2 rounded-full bg-effort" aria-hidden="true"></span>
-        Aufwand — Mitarbeiter, Ressourcen, Zeit
+        Aufwand: Mitarbeiter, Ressourcen, Zeit
       </p>
 
       <p class="mt-8 font-display text-2xl font-bold leading-tight md:text-3xl">
@@ -330,7 +347,9 @@ const aufwandPasstNicht = 14;
             <p class="text-xs font-semibold uppercase tracking-widest text-white/50">
               Aktueller Job
             </p>
-            <p class="mt-2 text-sm text-white/40">Bekannt. Sicher. Bequem.</p>
+            <p class="mt-2 text-sm italic text-white/40">
+              „Ich bin zwar nicht zufrieden, aber ich weiß, was ich habe.“
+            </p>
           </div>
           <div class="scale-pan-right flex-1 border border-brand-green/30 bg-brand-green/5 p-5 text-center">
             <p class="text-xs font-semibold uppercase tracking-widest text-brand-green">
@@ -341,6 +360,9 @@ const aufwandPasstNicht = 14;
               <li>Team</li>
               <li>Karriere</li>
             </ul>
+            <p class="mt-2 text-sm italic text-white/40">
+              „Ist das wirklich besser als mein aktueller Job?“
+            </p>
           </div>
         </div>
       </div>

@@ -2,49 +2,57 @@
 import Layout from "../layouts/Layout.astro";
 import SpotlightCTA from "../components/SpotlightCTA.astro";
 
-// Aufwand-Vergleich: gleicher Umsatz, sehr unterschiedlicher Aufwand.
-// Kreise = Aufwand (Mitarbeiter, Arbeitsmittel, Zeit ...), Rechteck = Umsatz.
-const aufwandPasst = 8;
-const aufwandPasstNicht = 14;
-
-// Hebel-Panel: Punkte starten breit gestreut und driften beim Fallen
-// zur Mitte, damit die Bewegung wie ein Funnel wirkt (Stage ist max-w-xs = 320px).
-const STAGE_WIDTH = 288;
-const leverDots = Array.from({ length: 12 }).map((_, i) => {
-  const fxPercent = 10 + i * 6.7;
-  const dxPx = Math.round(STAGE_WIDTH / 2 - (STAGE_WIDTH * fxPercent) / 100);
-  return {
-    kind: i % 2 === 0 ? "kunde" : "mitarbeiter",
-    fxPercent,
-    dxPx,
-    delay: i * 0.35,
-  };
-});
-
-// Unternehmen-Eimer: weniger Baelle als oben reinkommen, sammeln sich
-// nach und nach an einer festen Position (zwei Reihen, versetzt).
-const bucketPositions = [
-  { x: 38, y: 6 },
-  { x: 50, y: 6 },
-  { x: 62, y: 6 },
-  { x: 30, y: 24 },
-  { x: 45, y: 24 },
-  { x: 60, y: 24 },
-  { x: 72, y: 24 },
+const leistungen = [
+  {
+    nummer: "01",
+    title: "Organische Reichweite",
+    kurz: "Sichtbar, wenn gesucht wird",
+    beschreibung:
+      "Deine Zielgruppe sucht täglich nach Antworten auf Fragen, die du schon seit Jahren beantworten kannst. Wir sorgen dafür, dass sie dich findet und versteht, warum sie bei niemandem besser aufgehoben ist.",
+  },
+  {
+    nummer: "02",
+    title: "Paid Ads",
+    kurz: "Reichweite, die nicht wartet",
+    beschreibung:
+      "Organischer Aufbau braucht Zeit. Paid Ads übernehmen in der Zwischenzeit: Sie bringen dein Angebot genau zu den Menschen, die gerade nach einer Lösung suchen.",
+  },
+  {
+    nummer: "03",
+    title: "Content-Produktion",
+    kurz: "Dein Wissen. Unser System.",
+    beschreibung:
+      "Du investierst Zeit in das, was nur du liefern kannst: dein Fachwissen, deine Perspektive, deine Haltung. Alles andere liegt bei uns: Planung, Produktion, Umsetzung.",
+  },
 ];
-const bucketDots = bucketPositions.map((pos, i) => ({
-  kind: i % 2 === 0 ? "kunde" : "mitarbeiter",
-  x: pos.x,
-  y: pos.y,
-  delay: i * 1.3,
-}));
+
+const referenzen = [
+  {
+    kunde: "Felix Zimmermann",
+    branche: "Kälte- und Klimatechnik",
+    foto: "/kunden/felix-zimmermann-waermepumpen-youtube-experte.jpg",
+    ausgangslage:
+      "Fachlich sehr stark, online kaum sichtbar. Viele Aufträge, aber nicht immer die richtigen.",
+    ergebnis:
+      "Bessere Vorqualifizierung, weniger Erklärungsaufwand im Vertrieb. YouTube als zentralen Vertrauensanker.",
+  },
+  {
+    kunde: "Jürgen Melzener",
+    branche: "Ganzheitliche Zahnmedizin",
+    foto: "/kunden/juergen-melzener-zahnarzt-ganzheitlich-youtube.png",
+    ausgangslage:
+      "Sehr erklärungsbedürftiges Thema, viele Missverständnisse im Markt, hoher Vertrauensbedarf.",
+    ergebnis:
+      "YouTube als Plattform für Aufklärung und Vertrauen. Überregionale Nachfrage durch klare Positionierung.",
+  },
+];
 ---
 
 <Layout
   title="Consistent Media"
-  description="Damit die richtigen Kunden anfragen und die richtigen Mitarbeiter sich bei dir bewerben. Wir machen deine Expertise sichtbar, über YouTube, Content und Ads."
+  description="Traffic-Agentur für Unternehmer, die fachlich stark sind und online sichtbar werden wollen. Wir bauen Systeme aus YouTube-Content, Social Media, Paid Ads und digitalem Backend."
 >
-  <!-- 1. Hero: das Warum, mit Studio-Video im Hintergrund -->
+  <!-- 1. Hero: Studio-Video im Hintergrund -->
   <section class="relative -mt-[73px] flex min-h-[100svh] flex-col justify-center overflow-hidden border-b border-white/10 px-6 pb-24 pt-[73px] md:px-8">
     <video
       autoplay
@@ -78,7 +86,8 @@ const bucketDots = bucketPositions.map((pos, i) => ({
         ><span class="caret text-brand-green" aria-hidden="true">|</span> sichtbar machen.
       </h1>
       <p class="mx-auto mt-8 max-w-xl text-lg leading-relaxed text-white/60 md:text-xl">
-        Damit die richtigen Kunden anfragen und die passenden Mitarbeiter sich bei dir bewerben.
+        Deine Expertise verdient Sichtbarkeit. Wir bauen das System, das deine Zielgruppe
+        täglich zu dir führt.
       </p>
       <div class="mt-14 flex flex-wrap items-center justify-center gap-4">
         <a
@@ -88,23 +97,17 @@ const bucketDots = bucketPositions.map((pos, i) => ({
           Zusammenarbeit anfragen
         </a>
         <a
-          href="/methode"
+          href="/leistungen"
           class="border border-white/40 px-8 py-4 text-sm font-semibold text-white backdrop-blur-sm transition-colors hover:border-white/70"
         >
-          So funktioniert es
+          Leistungen ansehen
         </a>
       </div>
     </div>
   </section>
 
   <script>
-    const words = [
-      "Expertise",
-      "Einzigartigkeit",
-      "Unternehmenserfolge",
-      "Arbeitgebermarke",
-      "Angebote",
-    ];
+    const words = ["Expertise", "Erfolge", "Angebote", "Leistungen", "Ergebnisse"];
     const el = document.getElementById("rotating-word");
     const heading = document.getElementById("hero-heading");
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -162,374 +165,106 @@ const bucketDots = bucketPositions.map((pos, i) => ({
     }
   </script>
 
-  <!-- 2. Der Hebel: Sichtbarkeit -- Kunden und Mitarbeiter landen im Unternehmen -->
-  <section class="border-b border-white/10 px-6 py-24 md:px-8 md:py-32">
+  <!-- 2. Leistungen -->
+  <section class="border-b border-white/10 px-6 py-24 md:px-8">
     <div class="mx-auto max-w-content">
-      <p class="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
-        Der Hebel: Sichtbarkeit
-      </p>
-      <h2 class="font-display mb-6 max-w-2xl text-3xl font-semibold leading-tight md:text-4xl">
-        Ein Unternehmen braucht entweder neue Kunden oder neue Mitarbeiter.
-      </h2>
-      <p class="mb-16 max-w-2xl text-lg leading-relaxed text-white/55">
-        Sichtbarkeit ist dafür ein großer Hebel und er wird immer größer, je länger du
-        ihn aufbaust. Genau wie das Vertrauen, das dabei entsteht.
-      </p>
-
-      <div class="mx-auto flex max-w-xs flex-col items-center">
-        <div class="lever-stage relative h-48 w-full">
-          {
-            leverDots.map((dot) => (
-              <span
-                class={`lever-dot lever-dot-${dot.kind}`}
-                style={`--fx:${dot.fxPercent}%; --dx:${dot.dxPx}px; animation-delay:${dot.delay}s;`}
-              />
-            ))
-          }
+      <div class="mb-16 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+        <div>
+          <p class="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
+            Was wir tun
+          </p>
+          <h2 class="font-display max-w-xl text-4xl font-semibold leading-tight md:text-5xl">
+            Sichtbar bei denen, die dich brauchen.
+          </h2>
         </div>
-        <div class="lever-bucket relative -mt-px flex h-24 w-full items-start justify-center pt-4">
-          {
-            bucketDots.map((dot) => (
-              <span
-                class={`bucket-dot bucket-dot-${dot.kind}`}
-                style={`--bx:${dot.x}%; --by:${dot.y}px; animation-delay:${dot.delay}s;`}
-              />
-            ))
-          }
-          <span class="relative z-10 text-xs font-semibold uppercase tracking-widest text-white/50">
-            Unternehmen
-          </span>
-        </div>
+        <a
+          href="/leistungen"
+          class="shrink-0 text-sm font-medium text-white/50 underline underline-offset-4 hover:text-white"
+        >
+          Alle Leistungen
+        </a>
       </div>
 
-      <div class="mt-10 flex items-center justify-center gap-6 text-xs text-white/40">
-        <span class="flex items-center gap-2">
-          <span class="inline-block h-2 w-2 rounded-full bg-brand-green" aria-hidden="true"></span>
-          Kunden
-        </span>
-        <span class="flex items-center gap-2">
-          <span class="inline-block h-2 w-2 rounded-full bg-talent" aria-hidden="true"></span>
-          Mitarbeiter
-        </span>
-      </div>
-    </div>
-  </section>
-
-  <!-- 2b. Du kennst das: gleiches Ergebnis, mehr Aufwand -->
-  <section class="border-b border-white/10 px-6 py-24 md:px-8 md:py-32">
-    <div class="mx-auto max-w-content">
-      <p class="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
-        Du kennst das
-      </p>
-      <h2 class="font-display mb-6 max-w-3xl text-3xl font-semibold leading-tight md:text-4xl">
-        Manche deiner <span class="whitespace-nowrap"><span id="kennst-word" class="text-brand-green">Kunden</span><span class="caret text-brand-green" aria-hidden="true">|</span></span><br />bringen mehr Umsatz als andere.
-      </h2>
-      <p class="mb-16 max-w-xl text-lg leading-relaxed text-white/55">
-        Aber du hast nicht genug davon, um die anderen Aufträge einfach
-        abzulehnen. Also nimmst du sie an.
-      </p>
-
-      <div id="cost-compare" class="grid gap-px bg-white/10 md:grid-cols-2">
-        <div class="flex flex-col bg-black p-8 md:p-10">
-          <p class="text-xs font-semibold uppercase tracking-widest text-white/50">
-            Die richtigen Aufträge
-          </p>
-          <p class="mt-8 text-sm font-semibold uppercase tracking-widest text-effort">
-            Aufwand
-          </p>
-          <p class="mt-1 text-xs text-white/40">Mitarbeiter, Ressourcen, Zeit</p>
-          <div class="mb-12 mt-3 flex max-w-52 flex-wrap gap-3">
-            {
-              Array.from({ length: aufwandPasst }).map(() => (
-                <span class="effort-dot inline-block h-5 w-5">
-                  <span class="dot-inner block h-full w-full rounded-full bg-effort" />
-                </span>
-              ))
-            }
-          </div>
-          <div class="mt-auto border border-brand-green/40 bg-brand-green/10 px-6 py-5">
-            <p class="font-display text-3xl font-semibold text-brand-green md:text-4xl">
-              1.000.000 €
-            </p>
-            <p class="mt-1 text-xs font-semibold uppercase tracking-widest text-white/50">
-              Umsatz
-            </p>
-          </div>
-        </div>
-
-        <div class="flex flex-col bg-black p-8 md:p-10">
-          <p class="text-xs font-semibold uppercase tracking-widest text-white/50">
-            Aufträge, die zu dir kommen
-          </p>
-          <div class="mb-12 mt-8 flex max-w-52 flex-wrap gap-3">
-            {
-              Array.from({ length: aufwandPasstNicht }).map(() => (
-                <span class="effort-dot inline-block h-5 w-5">
-                  <span class="dot-inner block h-full w-full rounded-full bg-effort" />
-                </span>
-              ))
-            }
-          </div>
-          <div class="mt-auto border border-brand-green/40 bg-brand-green/10 px-6 py-5">
-            <p class="font-display text-3xl font-semibold text-brand-green md:text-4xl">
-              1.000.000 €
-            </p>
-            <p class="mt-1 text-xs font-semibold uppercase tracking-widest text-white/50">
-              Umsatz
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <p class="mt-8 font-display text-2xl font-bold leading-tight md:text-3xl">
-        Gleiches Ergebnis, unterschiedlicher Aufwand.
-      </p>
-    </div>
-  </section>
-
-  <script>
-    // Typewriter fuer "Du kennst das"
-    (() => {
-      const words = ["Kunden", "Aufträge", "Dienstleistungen"];
-      const el = document.getElementById("kennst-word");
-      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if (!el || reduce) return;
-      let wi = 0,
-        ci = words[0].length,
-        del = true;
-      const tick = () => {
-        const w = words[wi];
-        if (!del) {
-          ci++;
-          el.textContent = w.slice(0, ci);
-          if (ci === w.length) {
-            del = true;
-            setTimeout(tick, 1200);
-            return;
-          }
-          setTimeout(tick, 85);
-        } else {
-          ci--;
-          el.textContent = w.slice(0, ci);
-          if (ci === 0) {
-            del = false;
-            wi = (wi + 1) % words.length;
-            setTimeout(tick, 350);
-            return;
-          }
-          setTimeout(tick, 40);
+      <div class="grid gap-px bg-white/10 md:grid-cols-3">
+        {
+          leistungen.map(({ nummer, title, kurz, beschreibung }) => (
+            <div class="flex flex-col gap-6 bg-black p-8 transition-colors hover:bg-white/[0.03]">
+              <span class="font-display text-sm font-medium text-white/20">{nummer}</span>
+              <div>
+                <h3 class="font-display text-2xl font-semibold">{title}</h3>
+                <p class="mt-1 text-xs font-semibold uppercase tracking-widest text-brand-green">
+                  {kurz}
+                </p>
+              </div>
+              <p class="text-sm leading-relaxed text-white/55">{beschreibung}</p>
+            </div>
+          ))
         }
-      };
-      setTimeout(tick, 1800);
-    })();
-
-    // Aufwand-Kreise poppen beim Einscrollen rein
-    (() => {
-      const cmp = document.getElementById("cost-compare");
-      if (!cmp) return;
-      const io = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((e) => {
-            if (e.isIntersecting) {
-              cmp.querySelectorAll(".effort-dot").forEach((d, i) => {
-                setTimeout(() => d.classList.add("is-visible"), i * 55);
-              });
-              io.disconnect();
-            }
-          });
-        },
-        { threshold: 0.35 },
-      );
-      io.observe(cmp);
-    })();
-  </script>
-
-  <!-- 2c. Arbeitgebermarke -->
-  <section class="border-b border-white/10 px-6 py-24 md:px-8 md:py-32">
-    <div class="mx-auto max-w-content">
-      <p class="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
-        Arbeitgebermarke
-      </p>
-      <h2 class="font-display mb-6 max-w-2xl text-3xl font-semibold leading-tight md:text-4xl">
-        Gute Mitarbeiter wechseln nicht leichtfertig.
-      </h2>
-      <p class="mb-16 max-w-xl text-lg leading-relaxed text-white/55">
-        Wer über einen Wechsel nachdenkt, wägt vor allem drei Dinge ab: das Gehalt,
-        das Team und die Karrierechancen. Und selbst wenn bei dir alles davon besser
-        wäre, wechselt niemand ins Ungewisse.
-      </p>
-
-      <p class="mb-6 text-center font-display text-xl font-semibold text-white/70">
-        Der Mensch wägt ab:
-      </p>
-      <div id="hire-scale" class="hire-scale mx-auto max-w-md pb-2 pt-6">
-        <div class="relative mx-auto h-10 w-full max-w-sm">
-          <div class="scale-beam absolute inset-x-0 top-1/2 h-[3px] bg-white/25"></div>
-          <div class="absolute left-1/2 top-1/2 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/40"></div>
-        </div>
-        <div class="mt-3 flex items-start justify-between gap-6">
-          <div class="scale-pan-left flex-1 border border-white/10 bg-black p-5 text-center">
-            <p class="text-xs font-semibold uppercase tracking-widest text-white/50">
-              Aktueller Job
-            </p>
-            <p class="mt-2 text-sm italic text-white/40">
-              „Ich bin zwar nicht zufrieden, aber ich weiß, was ich habe.“
-            </p>
-          </div>
-          <div class="scale-pan-right flex-1 border border-brand-green/30 bg-brand-green/5 p-5 text-center">
-            <p class="text-xs font-semibold uppercase tracking-widest text-brand-green">
-              Bei dir
-            </p>
-            <p class="mt-2 text-sm italic text-white/40">
-              „Ist das wirklich besser als mein aktueller Job?“
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <p class="mt-12 font-display text-2xl font-bold leading-tight md:text-3xl">
-        Sichtbarkeit schafft das Vertrauen, dass es bei dir wirklich besser ist.
-      </p>
-    </div>
-  </section>
-
-  <script>
-    // Waage kippt beim Einscrollen von "Aktueller Job" zu "Bei dir"
-    (() => {
-      const el = document.getElementById("hire-scale");
-      if (!el) return;
-      const io = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((e) => {
-            if (e.isIntersecting) {
-              setTimeout(() => el.classList.add("is-active"), 300);
-              io.disconnect();
-            }
-          });
-        },
-        { threshold: 0.4 },
-      );
-      io.observe(el);
-    })();
-  </script>
-
-  <!-- 2d. Das Ziel -->
-  <section class="border-b border-white/10 px-6 py-24 md:px-8 md:py-32">
-    <div class="mx-auto max-w-content">
-      <p class="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
-        Das Ziel
-      </p>
-      <h2 class="font-display mb-16 max-w-3xl text-3xl font-semibold leading-tight md:text-4xl">
-        Die richtigen Menschen anziehen.
-      </h2>
-      <div id="vorher-nachher" class="grid gap-px bg-white/10 md:grid-cols-2">
-        <div class="bg-black p-8 md:p-10">
-          <p class="mb-10 text-xs font-semibold uppercase tracking-widest text-white/40">
-            Vorher
-          </p>
-          <div class="space-y-8">
-            <div class="flex items-end justify-between gap-4">
-              <span class="flex items-center gap-3 text-sm text-white/55">
-                <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                  <rect x="3" y="5" width="18" height="14" rx="2" />
-                  <path d="M3 7.5 12 13l9-5.5" />
-                </svg>
-                Anfragen
-              </span>
-              <span class="counter font-display text-4xl font-semibold tabular-nums md:text-5xl" data-target="45" data-duration="24000">0</span>
-            </div>
-            <div class="flex items-end justify-between gap-4">
-              <span class="text-sm text-white/55">davon passend</span>
-              <span class="counter font-display text-4xl font-semibold tabular-nums text-brand-green md:text-5xl" data-target="5" data-duration="24000">0</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="bg-black p-8 md:p-10">
-          <p class="mb-10 text-xs font-semibold uppercase tracking-widest text-brand-green">
-            Nachher
-          </p>
-          <div class="space-y-8">
-            <div class="flex items-end justify-between gap-4">
-              <span class="flex items-center gap-3 text-sm text-white/55">
-                <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                  <rect x="3" y="5" width="18" height="14" rx="2" />
-                  <path d="M3 7.5 12 13l9-5.5" />
-                </svg>
-                Anfragen
-              </span>
-              <span class="counter font-display text-4xl font-semibold tabular-nums md:text-5xl" data-target="180" data-duration="24000">0</span>
-            </div>
-            <div class="flex items-end justify-between gap-4">
-              <span class="text-sm text-white/55">davon passend</span>
-              <span class="counter font-display text-4xl font-semibold tabular-nums text-brand-green md:text-5xl" data-target="150" data-duration="24000">0</span>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
 
-  <script>
-    // Vorher/Nachher: Zahlen zaehlen hoch (Anfragen + davon passend)
-    (() => {
-      const cont = document.getElementById("vorher-nachher");
-      if (!cont) return;
-      const counters = cont.querySelectorAll<HTMLElement>(".counter");
-      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  <!-- 3. Referenzen-Teaser -->
+  <section class="border-b border-white/10 px-6 py-24 md:px-8">
+    <div class="mx-auto max-w-content">
+      <div class="mb-16 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+        <div>
+          <p class="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-brand-green">
+            Referenzen
+          </p>
+          <h2 class="font-display max-w-lg text-4xl font-semibold leading-tight md:text-5xl">
+            Expertise sichtbar gemacht.
+          </h2>
+        </div>
+        <a
+          href="/referenzen"
+          class="shrink-0 text-sm font-medium text-white/50 underline underline-offset-4 hover:text-white"
+        >
+          Alle Referenzen
+        </a>
+      </div>
 
-      const setFinal = () => {
-        counters.forEach((el) => {
-          el.textContent = String(el.dataset.target ?? "0");
-        });
-      };
+      <div class="grid gap-px bg-white/10 md:grid-cols-2">
+        {
+          referenzen.map(({ kunde, branche, foto, ausgangslage, ergebnis }) => (
+            <div class="flex flex-col gap-6 bg-black p-8 transition-colors hover:bg-white/[0.03] md:p-10">
+              <div class="flex items-center gap-4">
+                <img
+                  src={foto}
+                  alt={kunde}
+                  width="48"
+                  height="48"
+                  class="h-12 w-12 rounded-full object-cover"
+                />
+                <div>
+                  <p class="font-display text-xl font-semibold">{kunde}</p>
+                  <p class="mt-0.5 text-xs font-semibold uppercase tracking-widest text-white/50">
+                    {branche}
+                  </p>
+                </div>
+              </div>
 
-      if (reduce) {
-        const io = new IntersectionObserver((entries) => {
-          entries.forEach((e) => {
-            if (e.isIntersecting) {
-              setFinal();
-              io.disconnect();
-            }
-          });
-        });
-        io.observe(cont);
-        return;
-      }
+              <div class="flex flex-col gap-4 border-t border-white/10 pt-6">
+                <div>
+                  <p class="mb-2 text-xs font-semibold uppercase tracking-widest text-white/50">
+                    Ausgangslage
+                  </p>
+                  <p class="text-sm leading-relaxed text-white/60">{ausgangslage}</p>
+                </div>
+                <div>
+                  <p class="mb-2 text-xs font-semibold uppercase tracking-widest text-brand-green">
+                    Ergebnis
+                  </p>
+                  <p class="text-sm leading-relaxed text-white/80">{ergebnis}</p>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
 
-      const run = () => {
-        counters.forEach((el) => {
-          const target = Number(el.dataset.target ?? 0);
-          const dur = Number(el.dataset.duration ?? 2000);
-          const start = performance.now();
-          const step = (now: number) => {
-            const p = Math.min((now - start) / dur, 1);
-            el.textContent = String(Math.round(p * target));
-            if (p < 1) requestAnimationFrame(step);
-          };
-          requestAnimationFrame(step);
-        });
-      };
-
-      const io = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((e) => {
-            if (e.isIntersecting) {
-              run();
-              setInterval(() => {
-                counters.forEach((el) => (el.textContent = "0"));
-                run();
-              }, 27000);
-              io.disconnect();
-            }
-          });
-        },
-        { threshold: 0.4 },
-      );
-      io.observe(cont);
-    })();
-  </script>
-
-  <!-- 7. CTA: Spotlight -->
+  <!-- 4. CTA: Spotlight -->
   <SpotlightCTA />
 </Layout>
